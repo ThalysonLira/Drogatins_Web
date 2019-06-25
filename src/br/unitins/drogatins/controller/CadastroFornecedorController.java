@@ -28,7 +28,6 @@ public class CadastroFornecedorController implements Serializable {
 	public CadastroFornecedorController() {
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 		fornecedor = (Fornecedor) flash.get("fornecedorFlash");
-
 //		fornecedor = (Fornecedor) Session.getInstance().getAttribute("fornecedorSession");
 	}
 
@@ -37,47 +36,46 @@ public class CadastroFornecedorController implements Serializable {
 		setFornecedor(dao.findById(id));
 	}
 
-	public void salvar(Fornecedor fornecedor) {
+	public void salvar() {
 		// encriptando a senha do fornecedor
-//		getFornecedor().setSenha(Util.encrypt(getFornecedor().getSenha()));
+		getFornecedor().setSenha(Util.encrypt(getFornecedor().getSenha()));
 
 		FornecedorDAO dao = new FornecedorDAO();
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 
-		if (fornecedor == null) {
-			flash.put("usuarioFlash", fornecedor);
+		if (getFornecedor() == null) {
+			flash.put("usuarioFlash", getFornecedor());
 			Util.redirect("cadastroendereco.xhtml");
 		} else {
-			dao.update(getFornecedor());
-			flash.put("enderecoFlash", fornecedor.getEndereco());
-			Util.redirect("cadastroendereco.xhtml");
+			if (dao.update(getFornecedor())) {
+				flash.put("enderecoFlash", getFornecedor().getEndereco());
+				Util.redirect("cadastroendereco.xhtml");
+			}
 		}
 
 		dao.closeConnection();
 	}
-	
+
 	public void incluir() {
+//		 encriptando a senha do fornecedor
+		getFornecedor().setSenha(Util.encrypt(getFornecedor().getSenha()));
+
+		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+		flash.put("usuarioFlash", fornecedor);
+		Util.redirect("cadastroendereco.xhtml");
+	}
+
+	public void alterar() {
 		// encriptando a senha do fornecedor
-//		getFornecedor().setSenha(Util.encrypt(getFornecedor().getSenha()));
+		getFornecedor().setSenha(Util.encrypt(getFornecedor().getSenha()));
 
 		FornecedorDAO dao = new FornecedorDAO();
-		if (dao.create(getFornecedor())) {
+		if (dao.update(getFornecedor())) {
 			limpar();
 		}
 		dao.closeConnection();
 	}
 
-	public void alterar(Fornecedor fornecedor) {
-		// encriptando a senha do fornecedor
-//		getFornecedor().setSenha(Util.encrypt(getFornecedor().getSenha()));
-
-		FornecedorDAO dao = new FornecedorDAO();
-		if (dao.update(fornecedor)) {
-			limpar();
-		}
-		dao.closeConnection();
-	}
-	
 	public void voltar() {
 		Util.redirect("consultafornecedor.xhtml");
 	}

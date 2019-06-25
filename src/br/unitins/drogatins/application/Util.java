@@ -12,7 +12,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 public class Util {
 
 	public static void main(String[] args) {
-		
+		System.out.println("Senha: " + Util.encrypt("012345678"));
 	}
 	
 	public static String encryptByApache(String value) {

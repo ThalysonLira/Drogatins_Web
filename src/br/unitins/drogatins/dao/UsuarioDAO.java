@@ -1,12 +1,8 @@
 package br.unitins.drogatins.dao;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 import br.unitins.drogatins.application.Util;
-import br.unitins.drogatins.model.Perfil;
 import br.unitins.drogatins.model.Usuario;
 
 public class UsuarioDAO extends DAO<Usuario> {
@@ -41,39 +37,21 @@ public class UsuarioDAO extends DAO<Usuario> {
 			Util.addMessageError("Falha ao conectar ao Banco de Dados.");
 			return null;
 		}
+
 		Usuario usuario = null;
-		PreparedStatement stat = null;
-		
-		
-		
-		
+		ClienteDAO cliente = new ClienteDAO();
+		FuncionarioDAO funcionario = new FuncionarioDAO();
+		FornecedorDAO fornecedor = new FornecedorDAO();
 
-		try {
-			
-			
-			stat = getConnection().prepareStatement("SELECT * FROM usuario WHERE login = ? AND senha = ? ");
-			stat.setString(1, login);
-			stat.setString(2, senha);
+		usuario = cliente.findCliente(login, senha);
 
-			ResultSet rs = stat.executeQuery();
-			if (rs.next()) {
-				usuario = new Usuario();
-				usuario.setId(rs.getInt("id"));
-				usuario.setLogin(rs.getString("login"));
-				usuario.setSenha(rs.getString("senha"));
-				usuario.setPerfil(Perfil.valueOf(rs.getInt("perfil")));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			Util.addMessageError("Falha ao consultar o Banco de Dados.");
-		} finally {
-			try {
-				stat.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+		if (usuario == null) {
+			usuario = funcionario.findFuncionario(login, senha);
 		}
-		
+		if (usuario == null) {
+			usuario = fornecedor.findFornecedor(login, senha);
+		}
+
 		return usuario;
 	}
 
@@ -82,5 +60,4 @@ public class UsuarioDAO extends DAO<Usuario> {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }

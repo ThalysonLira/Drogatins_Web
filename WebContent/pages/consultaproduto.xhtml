@@ -2,78 +2,74 @@
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:jsf="http://xmlns.jcp.org/jsf">
-<h:head>
-	<title>Consulta de Produto</title>
-	<h:outputStylesheet library="css" name="style.css" />
-</h:head>
-<h:body>
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<ui:composition template="../template.xhtml">
+	<ui:define name="conteudo">
+		<div class="container" align="center">
+			<h1>Consulta de Produto</h1>
 
-	<center>
-		<h1>Consulta de Produto</h1>
+			<h:messages style="color:red" />
+			<h:form>
 
-		<h:messages style="color:red" />
-		<h:form>
-			<h:panelGrid id="panelForm" columns="3">
+				<h:panelGrid id="panelForm" columns="3">
 
-				<h:outputLabel value="Nome: " />
-				<h:inputText value="#{consultaProdutoController.busca}" />
+					<h:outputLabel value="Nome: " />
+					<h:inputText value="#{consultaProdutoController.busca}" />
 
-				<h:commandButton value="Pesquisar"
-					actionListener="#{consultaProdutoController.pesquisar}">
-					<f:ajax execute="panelForm" render="@all" />
-				</h:commandButton>
-
-			</h:panelGrid>
-
-			<h:dataTable value="#{consultaProdutoController.listaProduto}"
-				var="obj">
-				<h:column>
-					<f:facet name="header">Id</f:facet>
-					<h:outputLabel value="#{obj.id}" />
-				</h:column>
-
-				<h:column>
-					<f:facet name="header">Nome</f:facet>
-					<h:outputLabel value="#{obj.nome}" />
-				</h:column>
-
-				<h:column>
-					<f:facet name="header">Marca</f:facet>
-					<h:outputLabel value="#{obj.marca}" />
-				</h:column>
-
-				<h:column>
-					<f:facet name="header">Lote</f:facet>
-					<h:outputLabel value="#{obj.lote}" />
-				</h:column>
-
-				<h:column>
-					<f:facet name="header">Desconto</f:facet>
-					<h:outputLabel value="#{obj.desconto}" />
-				</h:column>
-
-				<h:column>
-					<f:facet name="header">Valor</f:facet>
-					<h:outputLabel value="#{obj.valor}" />
-				</h:column>
-
-				<h:column>
-					<f:facet name="header">Ação</f:facet>
-					<h:commandButton value="Alterar"
-						actionListener="#{consultaProdutoController.editar(obj)}">
-						<f:ajax render="@form" execute="@this" />
+					<h:commandButton value="Pesquisar"
+						actionListener="#{consultaProdutoController.pesquisar}">
+						<f:ajax execute="panelForm" render="@all" />
 					</h:commandButton>
-					<h:commandButton value="Remover"
-						actionListener="#{consultaProdutoController.excluir(obj)}">
-						<f:ajax render="@form" execute="@this" />
-					</h:commandButton>
-				</h:column>
 
-			</h:dataTable>
+				</h:panelGrid>
 
-		</h:form>
+				<h:dataTable value="#{consultaProdutoController.listaProduto}"
+					var="obj">
+					<h:column>
+						<f:facet name="header">Id</f:facet>
+						<h:outputLabel value="#{obj.id}" />
+					</h:column>
 
-	</center>
-</h:body>
+					<h:column>
+						<f:facet name="header">Nome</f:facet>
+						<h:outputLabel value="#{obj.nome}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Marca</f:facet>
+						<h:outputLabel value="#{obj.marca}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Lote</f:facet>
+						<h:outputLabel value="#{obj.lote}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Desconto</f:facet>
+						<h:outputLabel value="#{obj.desconto}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Valor</f:facet>
+						<h:outputLabel value="#{obj.valor}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Ação</f:facet>
+						<h:commandButton value="Alterar"
+							actionListener="#{consultaProdutoController.editar(obj)}">
+							<f:ajax render="@form" execute="@this" />
+						</h:commandButton>
+						<h:commandButton value="Remover"
+							actionListener="#{consultaProdutoController.excluir(obj)}">
+							<f:ajax render="@form" execute="@this" />
+						</h:commandButton>
+					</h:column>
+				</h:dataTable>
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>
 </html>

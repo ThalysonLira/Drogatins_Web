@@ -38,12 +38,12 @@ public class CadastroEnderecoController implements Serializable {
 		setEndereco(dao.findById(id));
 	}
 	
-	public void salvar(Endereco endereco) {
+	public void salvar() {
 		// encriptando a senha do endereco
 //		getEndereco().setSenha(Util.encrypt(getEndereco().getSenha()));
 		
 		EnderecoDAO dao = new EnderecoDAO();
-		if (endereco == null) {
+		if (getEndereco() == null) {
 			getUsuario().setEndereco(getEndereco());
 			
 			if(Cliente.class == usuario.getClass()) {
@@ -53,12 +53,19 @@ public class CadastroEnderecoController implements Serializable {
 			}else if(Fornecedor.class == usuario.getClass()) {
 				dao.createFornecedor((Fornecedor) getUsuario());
 			}
-			
 			limpar();
 		}
 		else {
 			if (dao.update(getEndereco())) {
 				limpar();
+				
+				if(Cliente.class == usuario.getClass()) {
+					Util.redirect("consultacliente.xhtml");
+				}else if(Funcionario.class == usuario.getClass()) {
+					Util.redirect("consultafuncionario.xhtml");
+				}else if(Fornecedor.class == usuario.getClass()) {
+					Util.redirect("consultafornecedor.xhtml");
+				}
 			}
 		}
 		
@@ -76,7 +83,7 @@ public class CadastroEnderecoController implements Serializable {
 		dao.closeConnection();
 	}
 
-	public void alterar(Endereco endereco) {
+	public void alterar() {
 		// encriptando a senha do endereco
 //		getEndereco().setSenha(Util.encrypt(getEndereco().getSenha()));
 

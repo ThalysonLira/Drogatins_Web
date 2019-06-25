@@ -21,12 +21,6 @@ public class LoginController{
 		
 		Usuario usuLogado = dao.findUsuario(getUsuario().getLogin(), senhaEncriptada);
 		
-		if(usuLogado.getPerfil().getLabel().equals("Cliente")) {
-			
-		}
-		
-		
-		
 		// comparando os dados da tela de login com o banco de dados
 		if (usuLogado != null) {
 			Session.getInstance().setAttribute("usuarioLogado", usuLogado);

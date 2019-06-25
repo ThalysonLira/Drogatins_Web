@@ -37,8 +37,8 @@ public class FornecedorDAO extends DAO<Fornecedor> {
 
 			stat.setString(1, obj.getNome());
 			stat.setString(2, obj.getCnpj());
-			stat.setInt(3, obj.getEndereco().getId());
-			stat.setString(4, obj.getLogin());
+			stat.setString(3, obj.getLogin());
+			stat.setInt(4, obj.getEndereco().getId());
 			stat.setString(5, obj.getSenha());
 			stat.setInt(6, obj.getPerfil().getValue());
 			stat.setInt(7, obj.getSituacao().getValue());

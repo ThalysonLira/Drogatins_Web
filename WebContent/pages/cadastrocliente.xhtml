@@ -76,16 +76,7 @@
 						<div class="row">
 							<div class="col-md-3 mb-3">
 								<h:commandButton value="Incluir"
-									disabled="#{cadastroClienteController.cliente.id != null}"
-									actionListener="#{cadastroClienteController.incluir}"
-									styleClass="col-md-2 mb-3 btn btn-default form-control">
-									<f:ajax execute="@form" render="@form formDataTable" />
-								</h:commandButton>
-							</div>
-							<div class="col-md-3 mb-3">
-								<h:commandButton value="Alterar"
-									disabled="#{cadastroClienteController.cliente.id == null}"
-									actionListener="#{cadastroClienteController.alterar(obj)}"
+									actionListener="#{cadastroClienteController.salvar}"
 									styleClass="col-md-2 mb-3 btn btn-default form-control">
 									<f:ajax execute="@form" render="@form formDataTable" />
 								</h:commandButton>

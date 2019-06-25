@@ -30,31 +30,32 @@ public class CadastroFuncionarioController implements Serializable {
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 		funcionario = (Funcionario) flash.get("funcionarioFlash");
 	}
-	
+
 	public void editar(int id) {
 		FuncionarioDAO dao = new FuncionarioDAO();
 		setFuncionario(dao.findById(id));
 	}
 
-	public void salvar(Funcionario funcionario) {
+	public void salvar() {
 		// encriptando a senha do fornecedor
 //		getFuncionario().setSenha(Util.encrypt(getFuncionario().getSenha()));
 
 		FuncionarioDAO dao = new FuncionarioDAO();
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 
-		if (funcionario.equals(null)) {
+		if (getFuncionario() == null) {
 			flash.put("usuarioFlash", funcionario);
 			Util.redirect("cadastroendereco.xhtml");
 		} else {
-			dao.update(funcionario);
-			flash.put("enderecoFlash", getFuncionario().getEndereco());
-			Util.redirect("cadastroendereco.xhtml");
+			if (dao.update(getFuncionario())) {
+				flash.put("enderecoFlash", getFuncionario().getEndereco());
+				Util.redirect("cadastroendereco.xhtml");
+			}
 		}
 
 		dao.closeConnection();
 	}
-	
+
 	public void incluir() {
 		// encriptando a senha do funcionario
 //		getFuncionario().setSenha(Util.encrypt(getFuncionario().getSenha()));
@@ -76,7 +77,7 @@ public class CadastroFuncionarioController implements Serializable {
 		}
 		dao.closeConnection();
 	}
-	
+
 	public void voltar() {
 		Util.redirect("consulta.xhtml");
 	}
@@ -95,7 +96,7 @@ public class CadastroFuncionarioController implements Serializable {
 		}
 		return listaFuncionario;
 	}
-	
+
 	public Sexo[] getListaSexo() {
 		return Sexo.values();
 	}
@@ -103,7 +104,7 @@ public class CadastroFuncionarioController implements Serializable {
 	public Perfil[] getListaPerfil() {
 		return Perfil.values();
 	}
-	
+
 	public Situacao[] getListaSituacao() {
 		return Situacao.values();
 	}

@@ -2,81 +2,79 @@
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:jsf="http://xmlns.jcp.org/jsf">
-<h:head>
-	<title>Consulta de Funcionario</title>
-	<h:outputStylesheet library="css" name="style.css" />
-</h:head>
-<h:body>
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<ui:composition template="../template.xhtml">
+	<ui:define name="conteudo">
+		<div class="container" align="center">
+			<h1>Consulta de Funcionário</h1>
 
-	<center>
-		<h1>Consulta de Funcionario</h1>
+			<h:messages style="color:red" />
+			<h:form>
+				<h:panelGrid id="panelForm" columns="3">
 
-		<h:messages style="color:red" />
-		<h:form>
-			<h:panelGrid id="panelForm" columns="3">
+					<h:outputLabel value="Nome: " />
+					<h:inputText value="#{consultaFuncionarioController.busca}" />
 
-				<h:outputLabel value="Nome: " />
-				<h:inputText value="#{consultaFuncionarioController.busca}" />
-
-				<h:commandButton value="Pesquisar"
-					actionListener="#{consultaFuncionarioController.pesquisar}">
-					<f:ajax execute="panelForm" render="@all" />
-				</h:commandButton>
-
-			</h:panelGrid>
-
-
-			<h:dataTable
-				value="#{consultaFuncionarioController.listaFuncionario}" var="obj">
-				<h:column>
-					<f:facet name="header">Id</f:facet>
-					<h:outputLabel value="#{obj.id}" />
-				</h:column>
-
-				<h:column>
-					<f:facet name="header">Nome</f:facet>
-					<h:outputLabel value="#{obj.nome}" />
-				</h:column>
-
-				<h:column>
-					<f:facet name="header">Cpf</f:facet>
-					<h:outputLabel value="#{obj.cpf}" />
-				</h:column>
-
-				<h:column>
-					<f:facet name="header">Login</f:facet>
-					<h:outputLabel value="#{obj.login}" />
-				</h:column>
-
-				<h:column>
-					<f:facet name="header">Sexo</f:facet>
-					<h:outputLabel value="#{obj.sexo.getLabel}" />
-				</h:column>
-
-				<h:column>
-					<f:facet name="header">Perfil</f:facet>
-					<h:outputLabel value="#{obj.perfil.getLabel}" />
-				</h:column>
-
-				<h:column>
-					<f:facet name="header">Situação</f:facet>
-					<h:outputLabel value="#{obj.situacao.getLabel}" />
-				</h:column>
-
-				<h:column>
-					<f:facet name="header">Ação</f:facet>
-					<h:commandButton value="Alterar"
-						actionListener="#{consultaFuncionarioController.editar(obj)}">
-						<f:ajax render="@form" execute="@this" />
+					<h:commandButton value="Pesquisar"
+						actionListener="#{consultaFuncionarioController.pesquisar}">
+						<f:ajax execute="panelForm" render="@all" />
 					</h:commandButton>
-					<h:commandButton value="Remover"
-						actionListener="#{consultaFuncionarioController.excluir(obj)}">
-						<f:ajax render="@form" execute="@this" />
-					</h:commandButton>
-				</h:column>
-			</h:dataTable>
-		</h:form>
-	</center>
-</h:body>
+
+				</h:panelGrid>
+
+
+				<h:dataTable
+					value="#{consultaFuncionarioController.listaFuncionario}" var="obj">
+					<h:column>
+						<f:facet name="header">Id</f:facet>
+						<h:outputLabel value="#{obj.id}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Nome</f:facet>
+						<h:outputLabel value="#{obj.nome}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Cpf</f:facet>
+						<h:outputLabel value="#{obj.cpf}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Login</f:facet>
+						<h:outputLabel value="#{obj.login}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Sexo</f:facet>
+						<h:outputLabel value="#{obj.sexo.getLabel}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Perfil</f:facet>
+						<h:outputLabel value="#{obj.perfil.getLabel}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Situação</f:facet>
+						<h:outputLabel value="#{obj.situacao.getLabel}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Ação</f:facet>
+						<h:commandButton value="Alterar"
+							actionListener="#{consultaFuncionarioController.editar(obj)}">
+							<f:ajax render="@form" execute="@this" />
+						</h:commandButton>
+						<h:commandButton value="Remover"
+							actionListener="#{consultaFuncionarioController.excluir(obj)}">
+							<f:ajax render="@form" execute="@this" />
+						</h:commandButton>
+					</h:column>
+				</h:dataTable>
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>
 </html>

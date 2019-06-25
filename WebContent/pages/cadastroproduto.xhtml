@@ -46,9 +46,9 @@
 								styleClass="form-control" />
 						</div>
 						<div class="mb-3">
-							<h:outputLabel value="Produto:" styleClass="control-label" />
+							<h:outputLabel value="Fornecedor:" styleClass="control-label" />
 							<h:inputText
-								value="#{cadastroProdutoController.produto.produto}"
+								value="#{cadastroProdutoController.produto.fornecedor}"
 								styleClass="form-control" />
 						</div>
 
@@ -57,16 +57,7 @@
 						<div class="row">
 							<div class="col-md-3 mb-3">
 								<h:commandButton value="Incluir"
-									disabled="#{cadastroProdutoController.produto.id != null}"
-									actionListener="#{cadastroProdutoController.incluir}"
-									styleClass="col-md-2 mb-3 btn btn-default form-control">
-									<f:ajax execute="@form" render="@form formDataTable" />
-								</h:commandButton>
-							</div>
-							<div class="col-md-3 mb-3">
-								<h:commandButton value="Alterar"
-									disabled="#{cadastroProdutoController.produto.id == null}"
-									actionListener="#{cadastroProdutoController.alterar(obj)}"
+									actionListener="#{cadastroProdutoController.salvar}"
 									styleClass="col-md-2 mb-3 btn btn-default form-control">
 									<f:ajax execute="@form" render="@form formDataTable" />
 								</h:commandButton>

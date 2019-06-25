@@ -33,7 +33,7 @@ public class CadastroProdutoController implements Serializable {
 		setProduto(dao.findById(id));
 	}
 
-	public void salvar(Produto produto) {
+	public void salvar() {
 		ProdutoDAO dao = new ProdutoDAO();
 		if (produto.equals(null)) {
 			if (dao.create(produto)) {

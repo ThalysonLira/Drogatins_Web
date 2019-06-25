@@ -29,31 +29,32 @@ public class CadastroClienteController implements Serializable {
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 		cliente = (Cliente) flash.get("clienteFlash");
 	}
-	
+
 	public void editar(int id) {
 		ClienteDAO dao = new ClienteDAO();
 		setCliente(dao.findById(id));
 	}
-	
-	public void salvar(Cliente cliente) {
+
+	public void salvar() {
 		// encriptando a senha do fornecedor
 //		getFornecedor().setSenha(Util.encrypt(getFornecedor().getSenha()));
 
 		ClienteDAO dao = new ClienteDAO();
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 
-		if (cliente.equals(null)) {
-			flash.put("usuarioFlash", cliente);
+		if (getCliente() == null) {
+			flash.put("usuarioFlash", getCliente());
 			Util.redirect("cadastroendereco.xhtml");
 		} else {
-			dao.update(getCliente());
-			flash.put("enderecoFlash", cliente.getEndereco());
-			Util.redirect("cadastroendereco.xhtml");
+			if (dao.update(getCliente())){
+				flash.put("enderecoFlash", getCliente().getEndereco());
+				Util.redirect("cadastroendereco.xhtml");
+			}
 		}
 
 		dao.closeConnection();
 	}
-	
+
 	public void incluir() {
 		// encriptando a senha do cliente
 //		getCliente().setSenha(Util.encrypt(getCliente().getSenha()));
@@ -65,17 +66,17 @@ public class CadastroClienteController implements Serializable {
 		dao.closeConnection();
 	}
 
-	public void alterar(Cliente cliente) {
+	public void alterar() {
 		// encriptando a senha do cliente
 //		getCliente().setSenha(Util.encrypt(getCliente().getSenha()));
 
 		ClienteDAO dao = new ClienteDAO();
-		if (dao.update(cliente)) {
+		if (dao.update(getCliente())) {
 			limpar();
 		}
 		dao.closeConnection();
 	}
-	
+
 	public void voltar() {
 		Util.redirect("consulta.xhtml");
 	}
@@ -94,11 +95,11 @@ public class CadastroClienteController implements Serializable {
 		}
 		return listaCliente;
 	}
-	
+
 	public Sexo[] getListaSexo() {
 		return Sexo.values();
 	}
-	
+
 	public Perfil[] getListaPerfil() {
 		return Perfil.values();
 	}
