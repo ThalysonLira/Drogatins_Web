@@ -22,14 +22,16 @@ public class ProdutoDAO extends DAO<Produto> {
 		}
 
 		PreparedStatement stat = null;
+		
 		try {
 			stat = getConnection().prepareStatement("INSERT INTO produto ( " + " nome, " + " marca, " + " lote, "
-					+ " desconto," + " valor ) " + "VALUES ( " + " ?, " + " ?, " + " ?, " + " ?," + " ? ) ");
+					+ " desconto," + " valor," + " fornecedor ) " + "VALUES ( " + " ?, " + " ?, " + " ?, " + " ?," + " ?," + " ? ) ");
 			stat.setString(1, obj.getNome());
 			stat.setString(2, obj.getMarca());
 			stat.setString(3, obj.getLote());
 			stat.setInt(4, obj.getDesconto());
 			stat.setDouble(5, obj.getValor());
+			stat.setInt(6, obj.getFornecedor().getId());
 			stat.execute();
 			
 			Util.addMessageError("Cadastro realizado com sucesso!");
@@ -60,13 +62,14 @@ public class ProdutoDAO extends DAO<Produto> {
 		PreparedStatement stat = null;
 		try {
 			stat = getConnection().prepareStatement("UPDATE produto SET " + "  nome = ?, " + "  marca = ? "
-					+ "  lote = ? " + "  desconto = ?, " + "  valor = ?, " + "WHERE id = ? ");
+					+ "  lote = ? " + "  desconto = ?, " + "  valor = ?, " + "  fornecedor = ?, " + "WHERE id = ? ");
 			stat.setString(1, obj.getNome());
 			stat.setString(2, obj.getMarca());
 			stat.setString(3, obj.getLote());
 			stat.setInt(4, obj.getDesconto());
 			stat.setDouble(5, obj.getValor());
-			stat.setInt(6, obj.getId());
+			stat.setInt(6, obj.getFornecedor().getId());
+			stat.setInt(7, obj.getId());
 
 			stat.execute();
 			Util.addMessageError("Alteração realizada com sucesso!");
@@ -81,8 +84,8 @@ public class ProdutoDAO extends DAO<Produto> {
 				e.printStackTrace();
 			}
 		}
+		
 		return resultado;
-
 	}
 
 	@Override
@@ -113,6 +116,7 @@ public class ProdutoDAO extends DAO<Produto> {
 				e.printStackTrace();
 			}
 		}
+		
 		return resultado;
 	}
 
@@ -126,6 +130,8 @@ public class ProdutoDAO extends DAO<Produto> {
 		Produto produto = null;
 
 		PreparedStatement stat = null;
+		
+		FornecedorDAO fornecedor = new FornecedorDAO();
 
 		try {
 			stat = getConnection().prepareStatement("SELECT * FROM Produto WHERE id = ?");
@@ -140,6 +146,9 @@ public class ProdutoDAO extends DAO<Produto> {
 				produto.setLote(rs.getString("lote"));
 				produto.setDesconto(rs.getInt("desconto"));
 				produto.setValor(rs.getDouble("valor"));
+				produto.setFornecedor(fornecedor.findById(rs.getInt("fornecedor")));
+				
+				fornecedor.closeConnection();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -151,6 +160,7 @@ public class ProdutoDAO extends DAO<Produto> {
 				e.printStackTrace();
 			}
 		}
+		
 		return produto;
 	}
 
@@ -165,6 +175,8 @@ public class ProdutoDAO extends DAO<Produto> {
 		List<Produto> listaProduto = new ArrayList<Produto>();
 
 		PreparedStatement stat = null;
+		
+		FornecedorDAO fornecedor = new FornecedorDAO();
 
 		try {
 			stat = getConnection().prepareStatement("SELECT * FROM Produto");
@@ -177,7 +189,9 @@ public class ProdutoDAO extends DAO<Produto> {
 				produto.setLote(rs.getString("lote"));
 				produto.setDesconto(rs.getInt("desconto"));
 				produto.setValor(rs.getDouble("valor"));
+				produto.setFornecedor(fornecedor.findById(rs.getInt("fornecedor")));
 
+				fornecedor.closeConnection();
 				listaProduto.add(produto);
 			}
 		} catch (SQLException e) {
@@ -204,6 +218,8 @@ public class ProdutoDAO extends DAO<Produto> {
 		List<Produto> listaProduto = new ArrayList<Produto>();
 
 		PreparedStatement stat = null;
+		
+		FornecedorDAO fornecedor = new FornecedorDAO();
 
 		try {
 			stat = getConnection().prepareStatement("SELECT * FROM Produto WHERE nome ILIKE ?");
@@ -218,7 +234,9 @@ public class ProdutoDAO extends DAO<Produto> {
 				produto.setLote(rs.getString("lote"));
 				produto.setDesconto(rs.getInt("desconto"));
 				produto.setValor(rs.getDouble("valor"));
+				produto.setFornecedor(fornecedor.findById(rs.getInt("fornecedor")));
 
+				fornecedor.closeConnection();
 				listaProduto.add(produto);
 			}
 		} catch (SQLException e) {
@@ -232,6 +250,7 @@ public class ProdutoDAO extends DAO<Produto> {
 				e.printStackTrace();
 			}
 		}
+		
 		return listaProduto;
 	}
 }

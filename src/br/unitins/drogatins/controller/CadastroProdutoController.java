@@ -27,28 +27,39 @@ public class CadastroProdutoController implements Serializable {
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 		produto = (Produto) flash.get("produtoFlash");
 	}
-	
+
 	public void editar(int id) {
 		ProdutoDAO dao = new ProdutoDAO();
 		setProduto(dao.findById(id));
 	}
 
+	public void salvar(Produto produto) {
+		ProdutoDAO dao = new ProdutoDAO();
+		if (produto.equals(null)) {
+			if (dao.create(produto)) {
+				limpar();
+			}
+		} else {
+			if (dao.update(produto)) {
+				limpar();
+			}
+		}
+
+		dao.closeConnection();
+	}
+	
 	public void incluir() {
 		ProdutoDAO dao = new ProdutoDAO();
 		if (dao.create(getProduto())) {
 			limpar();
-			// para atualizar o data table
-			listaProduto = null;
 		}
 		dao.closeConnection();
 	}
 
 	public void alterar(Produto produto) {
 		ProdutoDAO dao = new ProdutoDAO();
-		if (dao.update(getProduto())) {
+		if (dao.update(produto)) {
 			limpar();
-			// para atualizar o data table
-			listaProduto = null;
 		}
 		dao.closeConnection();
 	}

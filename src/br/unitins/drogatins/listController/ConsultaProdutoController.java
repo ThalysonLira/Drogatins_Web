@@ -24,9 +24,20 @@ public class ConsultaProdutoController implements Serializable{
 
 	private List<Produto> listaProduto = null;
 	
+	public void novo() {
+		Util.redirect("cadastroproduto.xhtml");
+	}
+	
+	public void editar(Produto produto) {
+		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+		flash.put("produtoFlash", produto);
+		
+		Util.redirect("cadastroproduto.xhtml");
+	}
+	
 	public void excluir(Produto produto) {
 		ProdutoDAO dao = new ProdutoDAO();
-		if (dao.delete(getProduto().getId())) {
+		if (dao.delete(produto.getId())) {
 			limpar();
 			// para atualizar o data table
 			listaProduto = null;
@@ -34,22 +45,8 @@ public class ConsultaProdutoController implements Serializable{
 		dao.closeConnection();
 	}
 	
-	public void editar(int id) {
-		ProdutoDAO dao = new ProdutoDAO();
-		Produto produto = dao.findById(id);
-		
-		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-		flash.put("produtoFlash", produto);
-		
-		Util.redirect("cadastroproduto.xhtml");
-	}
-	
 	public void pesquisar() {
 		listaProduto = null;
-	}
-	
-	public void novo() {
-		Util.redirect("cadastroproduto.xhtml");
 	}
 	
 	public void voltar() {
@@ -64,6 +61,7 @@ public class ConsultaProdutoController implements Serializable{
 		if (listaProduto == null) {
 			ProdutoDAO dao = new ProdutoDAO();
 			listaProduto = dao.findByNome(getBusca());
+			
 			if (listaProduto == null)
 				listaProduto = new ArrayList<Produto>();
 			dao.closeConnection();

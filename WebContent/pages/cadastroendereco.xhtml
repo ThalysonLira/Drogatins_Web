@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<ui:composition template="../template.xhtml">
+	<ui:define name="conteudo">
+		<div class="container">
+			<div class="navbar navbar-inverse">
+				<div class="navbar-brand" style="width: 100%; text-align: center;">Cadastro
+					de Endereço</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 col-xs-updated">
+					<h:form styleClass="form-horizontal">
+						<h:messages id="messages" style="color:red" globalOnly="false" />
+
+						<div class="mb-3">
+							<h:outputLabel value="Rua:" styleClass="control-label" />
+							<h:inputText
+								value="#{cadastroEnderecoController.endereco.rua}"
+								styleClass="form-control" />
+						</div>
+						<div class="mb-3">
+							<h:outputLabel value="Numero:" styleClass="control-label" />
+							<h:inputText
+								value="#{cadastroEnderecoController.endereco.numero}"
+								styleClass="form-control" />
+						</div>
+						<div class="mb-3">
+							<h:outputLabel value="Cep:" styleClass="control-label" />
+							<h:inputText
+								value="#{cadastroEnderecoController.endereco.cep}"
+								styleClass="form-control" />
+						</div>
+						<div class="mb-3">
+							<h:outputLabel value="Bairro:" styleClass="control-label" />
+							<h:inputText
+								value="#{cadastroEnderecoController.endereco.bairro}"
+								styleClass="form-control" />
+						</div>
+						<div class="mb-3">
+							<h:outputLabel value="Cidade:" styleClass="control-label" />
+							<h:inputText
+								value="#{cadastroEnderecoController.endereco.cidade}"
+								styleClass="form-control" />
+						</div>
+						<div class="mb-3">
+							<h:outputLabel value="Uf:" styleClass="control-label" />
+							<h:selectOneListbox
+								value="#{cadastroEnderecoController.endereco.uf}"
+								styleClass="form-control" size="1" style="height: 34px;">
+
+								<f:selectItem itemLabel="Selecione ..." />
+								<f:selectItems value="#{cadastroEnderecoController.listaUf}"
+									var="uf" itemLabel="#{uf.label}" itemValue="#{situacao}" />
+							</h:selectOneListbox>
+						</div>
+						<div class="mb-3">
+							<h:outputLabel value="Complemento:" styleClass="control-label" />
+							<h:inputTextarea
+								value="#{cadastroEnderecoController.endereco.complemento}"
+								styleClass="form-control" />
+						</div>
+
+						<hr />
+
+						<div class="row">
+							<div class="col-md-3 mb-3">
+								<h:commandButton value="Salvar e finalizar"
+									actionListener="#{cadastroEnderecoController.salvar(obj.endereco)}"
+									styleClass="col-md-2 mb-3 btn btn-default form-control">
+									<f:ajax execute="@form" render="@form formDataTable" />
+								</h:commandButton>
+							</div>
+							<div class="col-md-3 mb-3">
+								<h:commandButton value="Limpar"
+									actionListener="#{cadastroEnderecoController.limpar}"
+									styleClass="col-md-2 mb-3 btn btn-default form-control">
+									<f:ajax execute="@this" render="@all" />
+								</h:commandButton>
+							</div>
+							<div class="col-md-3 mb-3">
+								<h:commandButton value="Voltar"
+									actionListener="#{cadastroEnderecoController.voltar}"
+									styleClass="col-md-2 mb-3 btn btn-default form-control" />
+							</div>
+						</div>
+					</h:form>
+				</div>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

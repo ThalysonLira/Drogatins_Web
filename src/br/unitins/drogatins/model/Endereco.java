@@ -1,18 +1,15 @@
 package br.unitins.drogatins.model;
 
-import br.unitins.drogatins.model.Usuario;
-
 public class Endereco {
 	
 	private Integer id;
 	
-	private Usuario usuario;
 	private String rua;
 	private String numero;
 	private String cep;
 	private String bairro;
 	private String cidade;
-	private Uf unidadeFederal;
+	private Uf uf;
 	private String complemento;
 	
 	public Endereco() {
@@ -25,14 +22,6 @@ public class Endereco {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
 	}
 
 	public String getRua() {
@@ -75,12 +64,12 @@ public class Endereco {
 		this.cidade = cidade;
 	}
 
-	public Uf getUnidadeFederal() {
-		return unidadeFederal;
+	public Uf getUf() {
+		return uf;
 	}
 
-	public void setUnidadeFederal(Uf unidadeFederal) {
-		this.unidadeFederal = unidadeFederal;
+	public void setUf(Uf uf) {
+		this.uf = uf;
 	}
 
 	public String getComplemento() {

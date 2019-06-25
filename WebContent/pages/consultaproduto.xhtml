@@ -26,7 +26,6 @@
 
 			</h:panelGrid>
 
-
 			<h:dataTable value="#{consultaProdutoController.listaProduto}"
 				var="obj">
 				<h:column>
@@ -36,10 +35,7 @@
 
 				<h:column>
 					<f:facet name="header">Nome</f:facet>
-					<h:commandLink value="#{obj.nome}"
-						actionListener="#{consultaProdutoController.editar(obj.id)}">
-						<f:ajax execute="@this" render="@form" />
-					</h:commandLink>
+					<h:outputLabel value="#{obj.nome}" />
 				</h:column>
 
 				<h:column>
@@ -60,6 +56,18 @@
 				<h:column>
 					<f:facet name="header">Valor</f:facet>
 					<h:outputLabel value="#{obj.valor}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Ação</f:facet>
+					<h:commandButton value="Alterar"
+						actionListener="#{consultaProdutoController.editar(obj)}">
+						<f:ajax render="@form" execute="@this" />
+					</h:commandButton>
+					<h:commandButton value="Remover"
+						actionListener="#{consultaProdutoController.excluir(obj)}">
+						<f:ajax render="@form" execute="@this" />
+					</h:commandButton>
 				</h:column>
 
 			</h:dataTable>

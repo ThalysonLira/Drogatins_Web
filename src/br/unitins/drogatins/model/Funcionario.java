@@ -2,33 +2,19 @@ package br.unitins.drogatins.model;
 
 import java.time.LocalDate;
 
-import javax.validation.constraints.NotBlank;
-
 import org.hibernate.validator.constraints.br.CPF;
 
 public class Funcionario extends Usuario {
 	
-	@NotBlank(message="O nome deve ser informado.")
-	private String nome;
-	
 	@CPF(message="Formato do cpf incorreto.")
 	private String cpf;
+	private Usuario usuario;
 	private LocalDate dataNascimento;
-	private Endereco endereco;
 	private Sexo sexo;
 	private Situacao situacao;
 	
 	public Funcionario() {
 		// TODO Auto-generated constructor stub
-		super();
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
 	}
 
 	public String getCpf() {
@@ -47,12 +33,12 @@ public class Funcionario extends Usuario {
 		this.dataNascimento = dataNascimento;
 	}
 
-	public Endereco getEndereco() {
-		return endereco;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public Sexo getSexo() {

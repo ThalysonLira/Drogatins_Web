@@ -42,8 +42,13 @@
 						</div>
 						<div class="mb-3">
 							<h:outputLabel value="Valor:" styleClass="control-label" />
+							<h:inputText value="#{cadastroProdutoController.produto.valor}"
+								styleClass="form-control" />
+						</div>
+						<div class="mb-3">
+							<h:outputLabel value="Produto:" styleClass="control-label" />
 							<h:inputText
-								value="#{cadastroProdutoController.produto.valor}"
+								value="#{cadastroProdutoController.produto.produto}"
 								styleClass="form-control" />
 						</div>
 
@@ -62,7 +67,7 @@
 								<h:commandButton value="Alterar"
 									disabled="#{cadastroProdutoController.produto.id == null}"
 									actionListener="#{cadastroProdutoController.alterar(obj)}"
-									styleClass="btn btn-default form-control">
+									styleClass="col-md-2 mb-3 btn btn-default form-control">
 									<f:ajax execute="@form" render="@form formDataTable" />
 								</h:commandButton>
 							</div>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+<h:head>
+	<title>Consulta de Fornecedor</title>
+	<h:outputStylesheet library="css" name="style.css" />
+</h:head>
+<h:body>
+
+	<center>
+		<h1>Consulta de Fornecedor</h1>
+
+		<h:messages style="color:red" />
+		<h:form>
+			<h:panelGrid id="panelForm" columns="3">
+
+				<h:outputLabel value="Nome: " />
+				<h:inputText value="#{consultaFornecedorController.busca}" />
+
+				<h:commandButton value="Pesquisar"
+					actionListener="#{consultaFornecedorController.pesquisar}">
+					<f:ajax execute="panelForm" render="@all" />
+				</h:commandButton>
+
+			</h:panelGrid>
+
+
+			<h:dataTable value="#{consultaFornecedorController.listaFornecedor}"
+				var="obj">
+				<h:column>
+					<f:facet name="header">Id</f:facet>
+					<h:outputLabel value="#{obj.id}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Nome</f:facet>
+					<h:outputLabel value="#{obj.nome}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Cnpj</f:facet>
+					<h:outputLabel value="#{obj.cnpj}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Login</f:facet>
+					<h:outputLabel value="#{obj.login}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Situação</f:facet>
+					<h:outputLabel value="#{obj.situacao}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Ação</f:facet>
+					<h:commandButton value="Alterar"
+						actionListener="#{consultaFornecedorController.editar(obj)}">
+						<f:ajax render="@form" execute="@this" />
+					</h:commandButton>
+					<h:commandButton value="Remover"
+						actionListener="#{consultaFornecedorController.excluir(obj)}">
+						<f:ajax render="@form" execute="@this" />
+					</h:commandButton>
+				</h:column>
+			</h:dataTable>
+		</h:form>
+	</center>
+</h:body>
+</html>

@@ -9,6 +9,7 @@ public class Produto {
 	private String lote;
 	private Integer desconto;
 	private Double valor;
+	private Fornecedor fornecedor;
 
 	public Produto() {
 		// TODO Auto-generated constructor stub
@@ -60,5 +61,13 @@ public class Produto {
 
 	public void setValor(Double valor) {
 		this.valor = valor;
+	}
+
+	public Fornecedor getFornecedor() {
+		return fornecedor;
+	}
+
+	public void setFornecedor(Fornecedor fornecedor) {
+		this.fornecedor = fornecedor;
 	}
 }

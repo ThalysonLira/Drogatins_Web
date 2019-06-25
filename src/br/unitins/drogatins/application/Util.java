@@ -3,11 +3,9 @@ package br.unitins.drogatins.application;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.InputMismatchException;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.swing.JOptionPane;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
@@ -21,26 +19,26 @@ public class Util {
 		return DigestUtils.sha256Hex(value);
 	}
 	
-//	public static String encrypt(String value) {
-//		try {
-//			// Classe usilizada para gerar a criptografia em hash
-//			MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
-//			byte[] bytes = messageDigest.digest(value.getBytes());
-//			
-//			// convertendo um array de bytes em hexadecimal
-//			StringBuilder stringBuilder = new StringBuilder();
-//			for (byte b : bytes) {
-//				stringBuilder.append(String.format("%02X", 0xFF & b));
-//			}
-//
-//			return stringBuilder.toString();
-//			
-//		} catch (NoSuchAlgorithmException e) {
-//			e.printStackTrace();
-//		}
-//		
-//		return null;
-//	}
+	public static String encrypt(String value) {
+		try {
+			// Classe usilizada para gerar a criptografia em hash
+			MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+			byte[] bytes = messageDigest.digest(value.getBytes());
+			
+			// convertendo um array de bytes em hexadecimal
+			StringBuilder stringBuilder = new StringBuilder();
+			for (byte b : bytes) {
+				stringBuilder.append(String.format("%02X", 0xFF & b));
+			}
+
+			return stringBuilder.toString();
+			
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
 
 	public static void redirect(String url) {
 		try {
@@ -51,7 +49,15 @@ public class Util {
 		}
 	}
 
+	public static void addMessageAlert(String message) {
+		FacesContext.getCurrentInstance().addMessage("", new FacesMessage(message));
+	}
+	
 	public static void addMessageError(String message) {
+		FacesContext.getCurrentInstance().addMessage("", new FacesMessage(message));
+	}
+	
+	public static void addMessageSucess(String message) {
 		FacesContext.getCurrentInstance().addMessage("", new FacesMessage(message));
 	}
 }

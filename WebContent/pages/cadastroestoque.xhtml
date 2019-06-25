@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<ui:composition template="../template.xhtml">
+	<ui:define name="conteudo">
+		<h:outputStylesheet library="css" name="template.css" />
+		<div class="container">
+			<div class="navbar navbar-inverse">
+				<div class="navbar-brand" style="width: 100%; text-align: center;">Cadastro
+					de Estoque</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 col-xs-updated">
+					<h:form styleClass="form-horizontal">
+						<h:messages id="messages" style="color:red" globalOnly="false" />
+
+						<div class="mb-3">
+							<h:panelGrid id="produtoTable" columns="2" cellpadding="5">
+								<p:outputLabel id="produtoLabel" value="Produto:" styleClass="control-label" />
+								<p:autoComplete id="produtoLista"
+									value="#{cadastroEstoqueController.busca}"
+									completeMethod="#{cadastroEstoqueController.produtos}" />
+							</h:panelGrid>
+						</div>
+						<div class="mb-3">
+							<h:outputLabel value="Quantidade:" styleClass="control-label" />
+							<h:inputText value="#{cadastroEstoqueController.item.quant}"
+								styleClass="form-control" />
+						</div>
+
+						<hr />
+
+						<div class="row">
+							<div class="col-md-3 mb-3">
+								<h:commandButton value="Incluir"
+									disabled="#{cadastroEstoqueController.item.id != null}"
+									actionListener="#{cadastroEstoqueController.incluir}"
+									styleClass="col-md-2 mb-3 btn btn-default form-control">
+									<f:ajax execute="@form" render="@form formDataTable" />
+								</h:commandButton>
+							</div>
+							<div class="col-md-3 mb-3">
+								<h:commandButton value="Alterar"
+									disabled="#{cadastroEstoqueController.item.id == null}"
+									actionListener="#{cadastroEstoqueController.alterar(obj)}"
+									styleClass="col-md-2 mb-3 btn btn-default form-control">
+									<f:ajax execute="@form" render="@form formDataTable" />
+								</h:commandButton>
+							</div>
+							<div class="col-md-3 mb-3">
+								<h:commandButton value="Cancelar"
+									actionListener="#{cadastroEstoqueController.limpar}"
+									styleClass="col-md-2 mb-3 btn btn-default form-control">
+									<f:ajax execute="@this" render="@all" />
+								</h:commandButton>
+							</div>
+							<div class="col-md-3 mb-3">
+								<h:commandButton value="Voltar"
+									actionListener="#{cadastroEstoqueController.voltar}"
+									styleClass="col-md-2 mb-3 btn btn-default form-control" />
+							</div>
+						</div>
+					</h:form>
+				</div>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>
