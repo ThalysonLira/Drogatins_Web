@@ -29,7 +29,7 @@ public class VendaDAO extends DAO<Venda> {
 		PreparedStatement stat = null;
 		try {
 			stat = getConnection().prepareStatement(
-					"INSERT INTO venda ( " + "  data, " + "  cliente ) " + "VALUES ( " + " ?, " + " ?, " + " ? ) ",
+					"INSERT INTO venda ( " + "  data, " + "  cliente " + "  total  ) " + "VALUES ( " + " ?, " + " ?, " + " ? ) ",
 					Statement.RETURN_GENERATED_KEYS);
 			stat.setDate(1, Date.valueOf(LocalDate.now()));
 			stat.setInt(2, obj.getCliente().getId());

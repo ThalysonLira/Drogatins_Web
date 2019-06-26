@@ -51,7 +51,7 @@ public class ProdutoDAO extends DAO<Produto> {
 	@Override
 	public boolean update(Produto obj) {
 		boolean resultado = false;
-
+		
 		// verificando se tem uma conexao valida
 		if (getConnection() == null) {
 			Util.addMessageError("Falha ao conectar ao Banco de Dados.");
@@ -67,7 +67,7 @@ public class ProdutoDAO extends DAO<Produto> {
 			stat.setString(3, obj.getLote());
 			stat.setInt(4, obj.getDesconto());
 			stat.setDouble(5, obj.getValor());
-			stat.setInt(7, obj.getId());
+			stat.setInt(6, obj.getId());
 
 			stat.execute();
 			Util.addMessageSucess("Alteração realizada com sucesso!");

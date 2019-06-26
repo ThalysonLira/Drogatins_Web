@@ -2,7 +2,7 @@
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 <ui:composition template="../template.xhtml">
@@ -19,11 +19,8 @@
 
 						<div class="mb-3">
 						<h:outputLabel value="Produto:" styleClass="control-label" />
-							<h:panelGrid id="produtoTable" columns="2" cellpadding="5">
-								<p:autoComplete id="produtoLista"
-									value="#{cadastroEstoqueController.busca}"
-									completeMethod="#{cadastroEstoqueController.produtos}" />
-							</h:panelGrid>
+							<h:inputText value="#{cadastroEstoqueController.item.nome}"
+								styleClass="form-control" />
 						</div>
 						<div class="mb-3">
 							<h:outputLabel value="Quantidade:" styleClass="control-label" />

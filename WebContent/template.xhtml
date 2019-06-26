@@ -31,16 +31,19 @@
 						action="#{templateController.redirecionar('/Drogatins_Web/faces/template.xhtml')}" />
 					<br />
 					<h:commandLink value="Cadastro de Cliente"
-						disabled="#{templateController.usuarioLogado.perfil != Perfil.ADMINISTRADOR}"
+						rendered="#{templateController.usuarioLogado.perfil != Perfil.CLIENTE}"
 						action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/cadastrocliente.xhtml')}" />
 					<br />
 					<h:commandLink value="Cadastro de Funcionário"
+						rendered="#{templateController.usuarioLogado.perfil != Perfil.CLIENTE}"
 						action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/cadastrofuncionario.xhtml')}" />
 					<br />
 					<h:commandLink value="Cadastro de Fornecedor"
+						rendered="#{templateController.usuarioLogado.perfil != Perfil.CLIENTE}"
 						action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/cadastrofornecedor.xhtml')}" />
 					<br />
 					<h:commandLink value="Cadastro de Produto"
+						rendered="#{templateController.usuarioLogado.perfil != Perfil.CLIENTE}"
 						action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/cadastroproduto.xhtml')}" />
 					<br />
 					<h:commandLink value="Estoque"

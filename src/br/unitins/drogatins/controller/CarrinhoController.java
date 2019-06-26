@@ -92,6 +92,7 @@ public class CarrinhoController implements Serializable {
 
 	public void finalizar() {
 		getVenda().setCliente((Usuario) Session.getInstance().getAttribute("usuarioLogado"));
+		getVenda().setTotal(getValorTotal());
 		VendaDAO dao = new VendaDAO();
 		dao.create(getVenda());
 	}
@@ -109,7 +110,9 @@ public class CarrinhoController implements Serializable {
 
 		if (carrinho.size() > 0) {
 			for (int i = 0; i < carrinho.size(); i++) {
-				valorTotal += carrinho.get(i).getValor();
+				double desconto = carrinho.get(i).getValor() *
+						carrinho.get(i).getItem().getProduto().getDesconto() / 100;
+				valorTotal += carrinho.get(i).getValor() - desconto ;
 			}
 		}
 

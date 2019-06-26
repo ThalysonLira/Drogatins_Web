@@ -46,10 +46,12 @@
 							<f:ajax render="@all" execute="@this" />
 						</h:commandButton>
 						<h:commandButton value="Alterar"
+							disabled="#{templateController.usuarioLogado.perfil == Perfil.CLIENTE}"
 							actionListener="#{consultaEstoqueController.editar(obj)}">
 							<f:ajax render="@form" execute="@this" />
 						</h:commandButton>
 						<h:commandButton value="Remover"
+							disabled="#{templateController.usuarioLogado.perfil == Perfil.CLIENTE}"
 							actionListener="#{consultaEstoqueController.excluir(obj)}">
 							<f:ajax render="@form" execute="@this" />
 						</h:commandButton>
