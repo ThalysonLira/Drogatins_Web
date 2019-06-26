@@ -11,8 +11,8 @@ import javax.inject.Named;
 
 import br.unitins.drogatins.application.Util;
 import br.unitins.drogatins.dao.FuncionarioDAO;
-import br.unitins.drogatins.model.Perfil;
 import br.unitins.drogatins.model.Funcionario;
+import br.unitins.drogatins.model.Perfil;
 import br.unitins.drogatins.model.Sexo;
 import br.unitins.drogatins.model.Situacao;
 

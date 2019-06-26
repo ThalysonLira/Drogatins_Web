@@ -11,8 +11,8 @@ import javax.inject.Named;
 
 import br.unitins.drogatins.application.Util;
 import br.unitins.drogatins.dao.FornecedorDAO;
-import br.unitins.drogatins.model.Perfil;
 import br.unitins.drogatins.model.Fornecedor;
+import br.unitins.drogatins.model.Perfil;
 import br.unitins.drogatins.model.Situacao;
 
 @Named
