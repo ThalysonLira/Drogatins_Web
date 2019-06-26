@@ -6,64 +6,59 @@
 	<meta charset="utf-8" name="viewport"
 		content="width=device-width, initial-scale=1"
 		http-equiv="X-UA-Conpatible" />
-	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputStylesheet library="lib"
+		name="/bootstrap/css/bootstrap.min.css" />
+	<h:outputStylesheet library="stylesheet"
+		name="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 	<h:outputStylesheet library="css" name="template.css" />
+
 </h:head>
 
 <h:body>
 	<div class="wrapper">
 		<div class="box navbar navbar-inverse header">
-			<h1>.: Drogatins :.</h1>
-			<div style="text-align: right;">
-				<h:form>
-					<h:outputLabel value="#{templateController.usuarioLogado.nome}" />
-					<h:commandLink value=" (Sair)"
-						action="#{templateController.encerrarSessao}" style="color:white" />
-				</h:form>
+			<div id="logo" class="col-md-2 col-logo">
+				<img src="resources/img/drogatins.png" />
+			</div>
+			<div id="usuer" class="col-md-10 col-usuario">
+				<div id="list" class="container">
+					<h:form>
+						<h:outputLabel style="text-align: left;" value="Olá, #{templateController.usuarioLogado.nome}" />
+
+						<img id="cart" src="resources/img/shopping-cart.png" />
+
+					</h:form>
+				</div>
 			</div>
 		</div>
 		<div class="box sidebar" style="text-align: center;">
-			<ui:insert name="menu">
-				<h1>Menu</h1>
-				<h:form>
-
-					<h:commandLink value="Início"
-						action="#{templateController.redirecionar('/Drogatins_Web/faces/template.xhtml')}" />
+			<h:form>
+				<div class="container">
+					<h:commandLink value="Cadastro1" />
 					<br />
-					<h:commandLink value="Cadastro de Cliente"
-						rendered="#{templateController.usuarioLogado.perfil != Perfil.CLIENTE}"
-						action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/cadastrocliente.xhtml')}" />
+					<h:commandLink value="Cadastro2" />
 					<br />
-					<h:commandLink value="Cadastro de Funcionário"
-						rendered="#{templateController.usuarioLogado.perfil != Perfil.CLIENTE}"
-						action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/cadastrofuncionario.xhtml')}" />
-					<br />
-					<h:commandLink value="Cadastro de Fornecedor"
-						rendered="#{templateController.usuarioLogado.perfil != Perfil.CLIENTE}"
-						action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/cadastrofornecedor.xhtml')}" />
-					<br />
-					<h:commandLink value="Cadastro de Produto"
-						rendered="#{templateController.usuarioLogado.perfil != Perfil.CLIENTE}"
-						action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/cadastroproduto.xhtml')}" />
-					<br />
-					<h:commandLink value="Estoque"
-						action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/cadastroestoque.xhtml')}" />
-					<br />
-					<h:commandLink
-						value="Carrinho (#{templateController.qtdItensCarrinho})"
-						action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/carrinho.xhtml')}" />
+					<h:commandLink value="Cadastro3" />
 					<br />
 
-				</h:form>
-			</ui:insert>
+				</div>
+
+
+			</h:form>
 		</div>
 		<div class="box content">
 			<br />
 			<ui:insert name="conteudo">
+				<h5>TÓPICOS EM PROGRAMAÇÃO I</h5>
 			</ui:insert>
 		</div>
+		<!--<div class="box footer" style="text-align: center; color: black;">
+			<h:outputText
+				value="Copyright © Unitins Lira Paz 2019. All rights reserved" />
+		</div>-->
 		<div class="box footer" style="text-align: center;">
-			<h:outputText value="2019 - UNITINS - Todos os direitos reservados." />
+			<p class="float-right">Copyright © Unitins Lira Paz 2019. All
+				rights reserved.</p>
 		</div>
 	</div>
 </h:body>
