@@ -17,13 +17,13 @@ import br.unitins.drogatins.model.Produto;
 
 @Named
 @ViewScoped
-public class CadastroEstoqueController implements Serializable{
+public class CadastroEstoqueController implements Serializable {
 
 	private static final long serialVersionUID = 3926415784563098038L;
-	
+
 	private ItemEstoque item;
 	private List<ItemEstoque> estoque = null;
-	
+
 	private String busca;
 	private List<Produto> produtos = null;
 
@@ -31,28 +31,28 @@ public class CadastroEstoqueController implements Serializable{
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 		item = (ItemEstoque) flash.get("itemFlash");
 	}
-	
+
 	public void editar(int id) {
 		EstoqueDAO dao = new EstoqueDAO();
 		setItem(dao.findById(id));
 	}
-	
-	public void incluir() {
+
+	public void salvar() {
 		EstoqueDAO dao = new EstoqueDAO();
-		if(dao.create(getItem())) {
-			limpar();
+
+		if (getItem().getId() == null) {
+			if (dao.create(getItem())) {
+				limpar();
+			}
+		} else {
+			if (dao.update(getItem())) {
+				limpar();
+			}
 		}
+
 		dao.closeConnection();
 	}
-	
-	public void alterar() {
-		EstoqueDAO dao = new EstoqueDAO();
-		if(dao.update(getItem())) {
-			limpar();
-		}
-		dao.closeConnection();
-	}
-	
+
 	public void voltar() {
 		Util.redirect("consultaestoque.xhtml");
 	}
@@ -60,7 +60,7 @@ public class CadastroEstoqueController implements Serializable{
 	public void limpar() {
 		item = null;
 	}
-	
+
 	public List<Produto> getProdutos() {
 		if (produtos == null) {
 			ProdutoDAO dao = new ProdutoDAO();
@@ -69,7 +69,7 @@ public class CadastroEstoqueController implements Serializable{
 				produtos = new ArrayList<Produto>();
 			dao.closeConnection();
 		}
-		
+
 		return produtos;
 	}
 
@@ -89,16 +89,16 @@ public class CadastroEstoqueController implements Serializable{
 				estoque = new ArrayList<ItemEstoque>();
 			dao.closeConnection();
 		}
-		
+
 		return estoque;
 	}
-	
+
 	public void setEstoque(List<ItemEstoque> estoque) {
 		this.estoque = estoque;
 	}
 
 	public ItemEstoque getItem() {
-		if(item == null)
+		if (item == null)
 			setItem(new ItemEstoque());
 		return item;
 	}

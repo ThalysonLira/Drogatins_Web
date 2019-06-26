@@ -56,26 +56,6 @@ public class CadastroFornecedorController implements Serializable {
 		dao.closeConnection();
 	}
 
-	public void incluir() {
-//		 encriptando a senha do fornecedor
-		getFornecedor().setSenha(Util.encrypt(getFornecedor().getSenha()));
-
-		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-		flash.put("usuarioFlash", fornecedor);
-		Util.redirect("cadastroendereco.xhtml");
-	}
-
-	public void alterar() {
-		// encriptando a senha do fornecedor
-		getFornecedor().setSenha(Util.encrypt(getFornecedor().getSenha()));
-
-		FornecedorDAO dao = new FornecedorDAO();
-		if (dao.update(getFornecedor())) {
-			limpar();
-		}
-		dao.closeConnection();
-	}
-
 	public void voltar() {
 		Util.redirect("consultafornecedor.xhtml");
 	}

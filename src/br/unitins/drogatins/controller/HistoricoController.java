@@ -42,6 +42,6 @@ public class HistoricoController implements Serializable {
 	public void detalhes(Venda venda) {
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 		flash.put("vendaFlash", venda);
-		Util.redirect("/Lavajato/faces/pages/detalhesvenda.xhtml");
+		Util.redirect("/Drogatins_Web/faces/pages/detalhesvenda.xhtml");
 	}
 }

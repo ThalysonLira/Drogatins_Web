@@ -71,28 +71,6 @@ public class CadastroEnderecoController implements Serializable {
 		
 		dao.closeConnection();
 	}
-
-	public void incluir() {
-		// encriptando a senha do endereco
-//		getEndereco().setSenha(Util.encrypt(getEndereco().getSenha()));
-
-		EnderecoDAO dao = new EnderecoDAO();
-		if (dao.create(getEndereco())) {
-			limpar();
-		}
-		dao.closeConnection();
-	}
-
-	public void alterar() {
-		// encriptando a senha do endereco
-//		getEndereco().setSenha(Util.encrypt(getEndereco().getSenha()));
-
-		EnderecoDAO dao = new EnderecoDAO();
-		if (dao.update(getEndereco())) {
-			limpar();
-		}
-		dao.closeConnection();
-	}
 	
 	public void voltar() {
 		Util.redirect("consultaendereco.xhtml");

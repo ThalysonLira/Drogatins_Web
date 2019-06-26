@@ -7,11 +7,6 @@
 <ui:composition template="../template.xhtml">
 	<ui:define name="conteudo">
 		<div class="container" align="center">
-			<div class="navbar navbar-inverse">
-				<div class="navbar-brand" style="width: 100%; text-align: center;">Consulta
-					de Estoque</div>
-			</div>
-
 			<h:messages style="color:red" />
 			<h:form>
 				<h:panelGrid id="panelForm" columns="3">
@@ -27,10 +22,6 @@
 				</h:panelGrid>
 
 				<h:dataTable value="#{consultaEstoqueController.estoque}" var="obj">
-					<h:column>
-						<f:facet name="header">Id</f:facet>
-						<h:outputLabel value="#{obj.id}" />
-					</h:column>
 
 					<h:column>
 						<f:facet name="header">Produto</f:facet>
@@ -38,7 +29,12 @@
 					</h:column>
 
 					<h:column>
-						<f:facet name="header">Quantidade</f:facet>
+						<f:facet name="header">Valor</f:facet>
+						<h:outputLabel value="#{obj.produto.valor}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Quantidade Disponível</f:facet>
 						<h:outputLabel value="#{obj.quant}" />
 					</h:column>
 
@@ -47,16 +43,6 @@
 						<h:commandButton value="Adicionar ao carrinho"
 							actionListener="#{carrinhoController.adicionar(obj.id)}">
 							<f:ajax render="@all" execute="@this" />
-						</h:commandButton>
-						<h:commandButton value="Alterar"
-							disabled="#{templateController.usuarioLogado.perfil == Perfil.CLIENTE}"
-							actionListener="#{consultaEstoqueController.editar(obj)}">
-							<f:ajax render="@form" execute="@this" />
-						</h:commandButton>
-						<h:commandButton value="Remover"
-							disabled="#{templateController.usuarioLogado.perfil == Perfil.CLIENTE}"
-							actionListener="#{consultaEstoqueController.excluir(obj)}">
-							<f:ajax render="@form" execute="@this" />
 						</h:commandButton>
 					</h:column>
 				</h:dataTable>

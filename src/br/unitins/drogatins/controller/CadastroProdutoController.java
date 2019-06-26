@@ -48,22 +48,6 @@ public class CadastroProdutoController implements Serializable {
 		dao.closeConnection();
 	}
 	
-	public void incluir() {
-		ProdutoDAO dao = new ProdutoDAO();
-		if (dao.create(getProduto())) {
-			limpar();
-		}
-		dao.closeConnection();
-	}
-
-	public void alterar(Produto produto) {
-		ProdutoDAO dao = new ProdutoDAO();
-		if (dao.update(produto)) {
-			limpar();
-		}
-		dao.closeConnection();
-	}
-	
 	public void voltar() {
 		Util.redirect("consultaproduto.xhtml");
 	}

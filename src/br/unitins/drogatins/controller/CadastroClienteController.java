@@ -55,28 +55,6 @@ public class CadastroClienteController implements Serializable {
 		dao.closeConnection();
 	}
 
-	public void incluir() {
-		// encriptando a senha do cliente
-//		getCliente().setSenha(Util.encrypt(getCliente().getSenha()));
-
-		ClienteDAO dao = new ClienteDAO();
-		if (dao.create(getCliente())) {
-			limpar();
-		}
-		dao.closeConnection();
-	}
-
-	public void alterar() {
-		// encriptando a senha do cliente
-//		getCliente().setSenha(Util.encrypt(getCliente().getSenha()));
-
-		ClienteDAO dao = new ClienteDAO();
-		if (dao.update(getCliente())) {
-			limpar();
-		}
-		dao.closeConnection();
-	}
-
 	public void voltar() {
 		Util.redirect("consulta.xhtml");
 	}

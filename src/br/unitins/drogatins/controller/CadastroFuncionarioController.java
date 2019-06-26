@@ -56,28 +56,6 @@ public class CadastroFuncionarioController implements Serializable {
 		dao.closeConnection();
 	}
 
-	public void incluir() {
-		// encriptando a senha do funcionario
-//		getFuncionario().setSenha(Util.encrypt(getFuncionario().getSenha()));
-
-		FuncionarioDAO dao = new FuncionarioDAO();
-		if (dao.create(getFuncionario())) {
-			limpar();
-		}
-		dao.closeConnection();
-	}
-
-	public void alterar(Funcionario funcionario) {
-		// encriptando a senha do funcionario
-//		getFuncionario().setSenha(Util.encrypt(getFuncionario().getSenha()));
-
-		FuncionarioDAO dao = new FuncionarioDAO();
-		if (dao.update(funcionario)) {
-			limpar();
-		}
-		dao.closeConnection();
-	}
-
 	public void voltar() {
 		Util.redirect("consulta.xhtml");
 	}
