@@ -6,8 +6,8 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
 	<meta charset="utf-8" />
-	<h:outputStylesheet library="lib"
-		name="/bootstrap/css/bootstrap.min.css" />
+	<h:outputStylesheet library="css"
+		name="style.css" />
 </h:head>
 <ui:composition template="../template.xhtml">
 	<ui:define name="conteudo">
@@ -76,6 +76,7 @@
 						<hr />
 
 						<div class="row">
+						<div class="style.cc">
 							<div class="col-md-3 mb-3">
 								<h:commandButton value="Salvar"
 									actionListener="#{cadastroClienteController.salvar}"
@@ -94,6 +95,7 @@
 								<h:commandButton value="Voltar"
 									actionListener="#{cadastroClienteController.voltar}"
 									styleClass="col-md-2 mb-3 btn btn-default form-control" />
+							</div>
 							</div>
 						</div>
 					</h:form>

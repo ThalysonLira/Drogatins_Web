@@ -40,7 +40,7 @@ public class CadastroEnderecoController implements Serializable {
 	
 	public void salvar() {
 		// encriptando a senha do endereco
-//		getEndereco().setSenha(Util.encrypt(getEndereco().getSenha()));
+		getUsuario().setSenha(Util.encrypt(getUsuario().getSenha()));
 		
 		EnderecoDAO dao = new EnderecoDAO();
 		if (getEndereco().getId() == null) {
