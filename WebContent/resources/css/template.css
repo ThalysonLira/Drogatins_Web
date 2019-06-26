@@ -1,9 +1,37 @@
+@font-face {
+	font-family: 'OpenSans';
+	src: url("../fonts/Open_Sans/OpenSans-Regular.ttf");
+	font-size: 1em;
+}
+
+@font-face {
+	font-family: 'OpenSans-Light';
+	src: url("../fonts/Open_Sans/OpenSans-Light.ttf");
+	font-size: 1em;
+}
+
 body {
-	margin: 2px;
+	display: block;
+	margin: 0px auto;
+}
+
+#wrapper .user {
+	color: red;
+	z-index: 4;
 }
 
 .sidebar {
 	grid-area: sidebar;
+	height: 100%;
+	color: black;
+	font-weight: bold;
+	font-family: sans-serif;
+}
+
+.sidebar div {
+	font-size: 20px;
+	padding-top: 15px;
+	margin-left: -19px;
 }
 
 .content {
@@ -36,7 +64,7 @@ body {
 @media only screen and (min-width: 600px) {
 	.wrapper {
 		grid-gap: 0px;
-		grid-template-columns: 20% 40% 40%;
+		grid-template-columns: 18% auto 40%;
 		grid-template-areas: "header  header  header" "sidebar content content"
 			"footer  footer  footer";
 		max-width: 100%;
@@ -57,16 +85,46 @@ body {
 
 .header {
 	color: #FFF;
-	background-color: black;
+	background-color: #11171d;
 	vertical-align: middle;
 	text-align: center;
-	height: 100px;
+	height: 70px;
+}
+
+.header .col-logo {
+	border-right: #171f26 1.5px solid;
+}
+
+.header p {
+	color: #FFF;
+	font-family: sans-serif;
+	font-size: 17px;
+	margin: 36px auto 7px;
+}
+
+#cart {
+	display: inline-block;
+	position: absolute;
+	margin-bottom: .5rem;
+	font-size: 17px;
+	right: 20px;
+	bottom: -28px;
+	cursor: pointer;
+}
+
+label {
+	display: inline-block;
+	position: absolute;
+	margin-bottom: .5rem;
+	font-size: 17px;
+	left: 14px;
+	bottom: -33px;
 }
 
 .footer {
 	grid-area: footer;
-	background-color: white;
-	height: 50px;
+	background-color: #171f26; 
+	height: 40px;
 	text-align: center;
 	vertical-align: middle;
 	bottom: 0;
@@ -75,9 +133,17 @@ body {
 	font-size: 150%;
 	position: fixed;
 	border-style: solid;
-	border-width: 1px;
+ 	border-width: 1px;
 	border-color: black;
 	border-left: 0px;
-	border-right: 0px;
+	border-right:  0px;
 	border-bottom: 0px;
+}
+
+.footer p {
+	color: #fff;
+	font-size: 14px;
+	font-family: sans-serif;
+	margin-right: 15px;
+	margin-top: 15px;
 }
