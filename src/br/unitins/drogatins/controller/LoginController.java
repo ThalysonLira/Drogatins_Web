@@ -25,7 +25,7 @@ public class LoginController{
 		if (usuLogado != null) {
 			Session.getInstance().setAttribute("usuarioLogado", usuLogado);
 			// login valido
-			Util.redirect("template.xhtml");
+			Util.redirect("/Drogatins_Web/faces/pages/principal.xhtml");
 		} else 
 			Util.addMessageError("Usuário ou senha inválido.");
 		

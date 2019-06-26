@@ -16,6 +16,8 @@ public class ItemEstoque {
 	}
 	
 	public Produto getProduto() {
+		if (produto == null)
+			setProduto(new Produto());
 		return produto;
 	}
 	

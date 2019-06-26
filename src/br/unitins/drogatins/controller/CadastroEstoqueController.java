@@ -24,9 +24,6 @@ public class CadastroEstoqueController implements Serializable {
 	private ItemEstoque item;
 	private List<ItemEstoque> estoque = null;
 
-	private String busca;
-	private List<Produto> produtos = null;
-
 	public CadastroEstoqueController() {
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 		item = (ItemEstoque) flash.get("itemFlash");
@@ -39,13 +36,16 @@ public class CadastroEstoqueController implements Serializable {
 
 	public void salvar() {
 		EstoqueDAO dao = new EstoqueDAO();
-
-		if (getItem().getId() == null) {
-			if (dao.create(getItem())) {
+		ItemEstoque item = dao.findProduto(getItem().getProduto().getId());
+		
+		if (item == null) {
+			if (dao.create(item)) {
 				limpar();
 			}
 		} else {
-			if (dao.update(getItem())) {
+			item.setQuant(item.getQuant() + this.getItem().getQuant());
+			
+			if (dao.update(item)) {
 				limpar();
 			}
 		}
@@ -59,26 +59,6 @@ public class CadastroEstoqueController implements Serializable {
 
 	public void limpar() {
 		item = null;
-	}
-
-	public List<Produto> getProdutos() {
-		if (produtos == null) {
-			ProdutoDAO dao = new ProdutoDAO();
-			produtos = dao.findByNome(getBusca());
-			if (produtos == null)
-				produtos = new ArrayList<Produto>();
-			dao.closeConnection();
-		}
-
-		return produtos;
-	}
-
-	public String getBusca() {
-		return busca;
-	}
-
-	public void setBusca(String busca) {
-		this.busca = busca;
 	}
 
 	public List<ItemEstoque> getEstoque() {

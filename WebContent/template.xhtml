@@ -11,22 +11,26 @@
 	<h:outputStylesheet library="stylesheet"
 		name="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 	<h:outputStylesheet library="css" name="template.css" />
-
+	<title>Drogatins</title>
 </h:head>
 
 <h:body>
 	<div class="wrapper">
 		<div class="box navbar navbar-inverse header">
 			<div id="logo" class="col-md-2 col-logo">
-				<img src="resources/img/drogatins.png" />
+				<img src="resources/img/drogatins.png" alt="Drogatins"/>
 			</div>
 			<div id="usuer" class="col-md-10 col-usuario">
 				<div id="list" class="container">
 					<h:form>
-						<h:outputLabel style="text-align: left;" value="Olá, #{templateController.usuarioLogado.nome}" />
-
-						<img id="cart" src="resources/img/shopping-cart.png" />
-
+						<p class="float-left"><h:outputLabel style="text-align: left;"
+							value="Olá, #{templateController.usuarioLogado.nome}" /> </p>
+						<p class="float-right">
+							<img id="cart" src="resources/img/shopping-cart.png" alt="Carrinho">
+							
+							</img>
+							<h:outputLabel value="(#{templateController.qtdItensCarrinho})"/>
+						</p>
 					</h:form>
 				</div>
 			</div>
@@ -34,13 +38,43 @@
 		<div class="box sidebar" style="text-align: center;">
 			<h:form>
 				<div class="container">
-					<h:commandLink value="Cadastro1" />
+					<h:commandLink value="Início"
+						action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/principal.xhtml')}" />
 					<br />
-					<h:commandLink value="Cadastro2" />
+					<h:commandLink value="Cadastro de Cliente"
+						action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/cadastrocliente.xhtml')}" />
 					<br />
-					<h:commandLink value="Cadastro3" />
+					<h:commandLink value="Consulta de Cliente"
+						action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/consultacliente.xhtml')}" />
 					<br />
-
+					<h:commandLink value="Cadastro de Fornecedor"
+						action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/cadastrofornecedor.xhtml')}" />
+					<br />
+					<h:commandLink value="Consulta de Fornecedor"
+						action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/consultafornecedor.xhtml')}" />
+					<br />
+					<h:commandLink value="Cadastro de Funcionario"
+						action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/cadastrofuncionario.xhtml')}" />
+					<br />
+					<h:commandLink value="Consulta de Funcionario"
+						action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/consultafuncionario.xhtml')}" />
+					<br />
+					<h:commandLink value="Cadastro de Produto"
+						action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/cadastroproduto.xhtml')}" />
+					<br />
+					<h:commandLink value="Consulta de Produto"
+						action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/consultaproduto.xhtml')}" />
+					<br />
+					<h:commandLink value="Entrada em Estoque"
+						action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/cadastroestoque.xhtml')}" />
+					<br />
+					<h:commandLink value="Listagem de Estoque"
+						action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/consultaestoque.xhtml')}" />
+					<br />
+					<h:commandLink
+						value="Detalhe de Venda"
+						action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/detalhesvenda.xhtml')}" />
+					<br />
 				</div>
 
 
@@ -49,7 +83,7 @@
 		<div class="box content">
 			<br />
 			<ui:insert name="conteudo">
-				<h5>TÓPICOS EM PROGRAMAÇÃO I</h5>
+
 			</ui:insert>
 		</div>
 		<!--<div class="box footer" style="text-align: center; color: black;">

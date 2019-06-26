@@ -16,7 +16,7 @@ public enum Perfil {
 			"cadastroendereco.xhtml", "cadastrocliente.xhtml", "consultacliente.xhtml", "cadastroestoque.xhtml",
 			"consultaestoque.xhtml", "cadastrofornecedor.xhtml", "consultafornecedor.xhtml", "cadastroproduto.xhtml",
 			"consultaproduto.xhtml", "acessonegado.xhtml")),
-	FORNECEDOR(4, "Fornecedor", Arrays.asList("login.xhtml", "template.xhtml", "cadastroendereco.xhtml",
+	FORNECEDOR(4, "Fornecedor", Arrays.asList("login.xhtml", "principal.xhtml", "template.xhtml", "cadastroendereco.xhtml",
 			"cadastroestoque.xhtml", "consultaestoque.xhtml", "acessonegado.xhtml")),
 	CLIENTE(5, "Cliente", Arrays.asList("login.xhtml", "template.xhtml", "principal.xhtml",
 			"cadastroendereco.xhtml", "carrinho.xhtml", "acessonegado.xhtml"));
@@ -28,6 +28,7 @@ public enum Perfil {
 	Perfil(int value, String label, List<String> pages) {
 		this.value = value;
 		this.label = label;
+		this.pages = pages;
 	}
 
 	public int getValue() {

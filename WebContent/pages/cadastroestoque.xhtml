@@ -18,10 +18,11 @@
 						<h:messages id="messages" style="color:red" globalOnly="false" />
 
 						<div class="mb-3">
-						<h:outputLabel value="Produto:" styleClass="control-label" />
-							<h:inputText value="#{cadastroEstoqueController.item.nome}"
+							<h:outputLabel value="Produto:" styleClass="control-label" />
+							<h:inputText value="#{cadastroEstoqueController.item.produto.id}"
 								styleClass="form-control" />
 						</div>
+
 						<div class="mb-3">
 							<h:outputLabel value="Quantidade:" styleClass="control-label" />
 							<h:inputText value="#{cadastroEstoqueController.item.quant}"

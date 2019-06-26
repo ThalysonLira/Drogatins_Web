@@ -18,21 +18,21 @@
 
 						<div class="mb-3">
 							<h:outputLabel value="Cliente:" styleClass="control-label" />
-							<h:outputText value=" #{detalhesVendaController.venda.cliente}"
+							<h:outputText value="#{detalhesVendaController.venda.cliente.nome}"
 								styleClass="control-label" />
 						</div>
 						<div class="mb-3">
-							<h:outputLabel value="Data da Venda: " styleClass="control-label" />
-							<h:outputText value=" #{detalhesVendaController.venda.data}"
+							<h:outputLabel value="Data da Venda:" styleClass="control-label" />
+							<h:outputText value="#{detalhesVendaController.venda.data}"
 								styleClass="control-label">
 								<f:convertDateTime type="localDate" pattern="dd-MM-yyyy" />
 							</h:outputText>
 						</div>
 						<div class="mb-3">
-							<h:outputLabel value="Total da venda: "
+							<h:outputLabel value="Total da venda:"
 								styleClass="control-label" />
 							<h:outputText
-								value=" #{detalhesVendaController.venda.totalVenda}"
+								value=" #{detalhesVendaController.venda.total}"
 								styleClass="control-label">
 								<f:convertNumber locale="pt_BR" currencySymbol="R$"
 									type="currency" />
