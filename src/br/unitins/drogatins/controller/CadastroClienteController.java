@@ -11,8 +11,8 @@ import javax.inject.Named;
 
 import br.unitins.drogatins.application.Util;
 import br.unitins.drogatins.dao.ClienteDAO;
-import br.unitins.drogatins.model.Perfil;
 import br.unitins.drogatins.model.Cliente;
+import br.unitins.drogatins.model.Perfil;
 import br.unitins.drogatins.model.Sexo;
 
 @Named

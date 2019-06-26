@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- DOCTYPE html>
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:h="http://xmlns.jcp.org/jsf/html">
@@ -7,5 +7,29 @@
 <h:body>
 	<h1 style="color:red">Acesso Negado</h1>
 
+</h:body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta charset="utf-8" />
+	<title>Acesso Negado</title>
+	<h:outputStylesheet library="css" name="acessonegado.css" />
+</h:head>
+<h:body>
+	<h:form class="box">
+		<img src="resources/img/drogatinsMaior.png" />
+		
+		<h1>Acesso negado!</h1>
+		<h5>Parece que você está tentando acessar uma página não permitida!</h5>
+		<h:messages style="color:red" />
+
+
+		<h:commandButton value="Voltar" /> <!--action="#{loginController.entrar}"-->
+	</h:form>
 </h:body>
 </html>
