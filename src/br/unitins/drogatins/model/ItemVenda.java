@@ -3,7 +3,7 @@ package br.unitins.drogatins.model;
 public class ItemVenda {
 	
 	private Integer id;
-	private Produto produto;
+	private ItemEstoque item;
 	private Double valor;
 	private Venda venda;
 	
@@ -15,14 +15,14 @@ public class ItemVenda {
 		this.id = id;
 	}
 	
-	public Produto getProduto() {
-		return produto;
+	public ItemEstoque getItem() {
+		return item;
 	}
-	
-	public void setProduto(Produto produto) {
-		this.produto = produto;
+
+	public void setItem(ItemEstoque item) {
+		this.item = item;
 	}
-	
+
 	public Double getValor() {
 		return valor;
 	}

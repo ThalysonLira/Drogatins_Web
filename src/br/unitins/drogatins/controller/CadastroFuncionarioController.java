@@ -43,7 +43,7 @@ public class CadastroFuncionarioController implements Serializable {
 		FuncionarioDAO dao = new FuncionarioDAO();
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 
-		if (getFuncionario() == null) {
+		if (getFuncionario().getId() == null) {
 			flash.put("usuarioFlash", funcionario);
 			Util.redirect("cadastroendereco.xhtml");
 		} else {
@@ -110,8 +110,8 @@ public class CadastroFuncionarioController implements Serializable {
 	}
 
 	public Funcionario getFuncionario() {
-		if (funcionario == null)
-			funcionario = new Funcionario();
+		if(funcionario == null)
+			setFuncionario(new Funcionario());
 		return funcionario;
 	}
 

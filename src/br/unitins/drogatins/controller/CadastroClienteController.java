@@ -37,12 +37,12 @@ public class CadastroClienteController implements Serializable {
 
 	public void salvar() {
 		// encriptando a senha do fornecedor
-//		getFornecedor().setSenha(Util.encrypt(getFornecedor().getSenha()));
+		getCliente().setSenha(Util.encrypt(getCliente().getSenha()));
 
 		ClienteDAO dao = new ClienteDAO();
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 
-		if (getCliente() == null) {
+		if (getCliente().getId() == null) {
 			flash.put("usuarioFlash", getCliente());
 			Util.redirect("cadastroendereco.xhtml");
 		} else {
@@ -105,8 +105,8 @@ public class CadastroClienteController implements Serializable {
 	}
 
 	public Cliente getCliente() {
-		if (cliente == null)
-			cliente = new Cliente();
+		if(cliente == null)
+			setCliente(new Cliente());
 		return cliente;
 	}
 

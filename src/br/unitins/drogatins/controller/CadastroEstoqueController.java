@@ -11,9 +11,7 @@ import javax.inject.Named;
 
 import br.unitins.drogatins.application.Util;
 import br.unitins.drogatins.dao.EstoqueDAO;
-import br.unitins.drogatins.dao.ProdutoDAO;
 import br.unitins.drogatins.model.ItemEstoque;
-import br.unitins.drogatins.model.Produto;
 
 @Named
 @ViewScoped
@@ -25,7 +23,7 @@ public class CadastroEstoqueController implements Serializable{
 	private List<ItemEstoque> estoque = null;
 	
 	private String busca;
-	private List<Produto> produtos = null;
+	private List<ItemEstoque> itens = null;
 
 	public CadastroEstoqueController() {
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
@@ -61,16 +59,16 @@ public class CadastroEstoqueController implements Serializable{
 		item = null;
 	}
 	
-	public List<Produto> getProdutos() {
-		if (produtos == null) {
-			ProdutoDAO dao = new ProdutoDAO();
-			produtos = dao.findByNome(getBusca());
-			if (produtos == null)
-				produtos = new ArrayList<Produto>();
+	public List<ItemEstoque> getItemEstoques() {
+		if (itens == null) {
+			EstoqueDAO dao = new EstoqueDAO();
+			itens = dao.findByNome(getBusca());
+			if (itens == null)
+				itens = new ArrayList<ItemEstoque>();
 			dao.closeConnection();
 		}
 		
-		return produtos;
+		return itens;
 	}
 
 	public String getBusca() {
@@ -98,6 +96,8 @@ public class CadastroEstoqueController implements Serializable{
 	}
 
 	public ItemEstoque getItem() {
+		if(item == null)
+			setItem(new ItemEstoque());
 		return item;
 	}
 

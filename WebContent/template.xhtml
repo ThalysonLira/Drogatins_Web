@@ -6,7 +6,7 @@
 	<meta charset="utf-8" name="viewport"
 		content="width=device-width, initial-scale=1"
 		http-equiv="X-UA-Conpatible" />
-	<!--  <h:outputStylesheet library="css" name="bootstrap.min.css" />-->
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
 	<h:outputStylesheet library="css" name="template.css"/>  
 </h:head>
 
@@ -16,7 +16,7 @@
 			<h1 >.: Drogatins :.</h1>
 			<div style="text-align: right;">
 				<h:form>
-					<h:outputLabel value="Olá #{templateController.usuarioLogado.nome}"/>
+					<h:outputLabel value="#{templateController.usuarioLogado.nome}"/>
 					<h:commandLink value=" (Sair)" 
 						action="#{templateController.encerrarSessao}"
 						style="color:white"/>
@@ -48,7 +48,6 @@
 		<div class="box content">
 			<br/>
 			<ui:insert name="conteudo">
-				<h1>TÓPICOS EM PROGRAMAÇÃO I</h1>
 			</ui:insert>
 		</div>
 		<div class="box footer" style="text-align: center;">

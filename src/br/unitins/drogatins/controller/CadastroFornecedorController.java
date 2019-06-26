@@ -43,7 +43,7 @@ public class CadastroFornecedorController implements Serializable {
 		FornecedorDAO dao = new FornecedorDAO();
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 
-		if (getFornecedor() == null) {
+		if (getFornecedor().getId() == null) {
 			flash.put("usuarioFlash", getFornecedor());
 			Util.redirect("cadastroendereco.xhtml");
 		} else {
@@ -105,7 +105,7 @@ public class CadastroFornecedorController implements Serializable {
 
 	public Fornecedor getFornecedor() {
 		if (fornecedor == null)
-			fornecedor = new Fornecedor();
+			setFornecedor(new Fornecedor());
 		return fornecedor;
 	}
 

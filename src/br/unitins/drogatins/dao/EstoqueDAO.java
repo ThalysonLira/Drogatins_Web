@@ -30,7 +30,7 @@ public class EstoqueDAO extends DAO<ItemEstoque> {
 			stat.setInt(2, obj.getQuant());
 
 			stat.execute();
-			Util.addMessageError("Cadastro realizado com sucesso!");
+			Util.addMessageSucess("Cadastro realizado com sucesso!");
 			resultado = true;
 		} catch (SQLException e) {
 			Util.addMessageError("Falha ao incluir.");
@@ -65,7 +65,7 @@ public class EstoqueDAO extends DAO<ItemEstoque> {
 			stat.setInt(3, obj.getId());
 
 			stat.execute();
-			Util.addMessageError("Alteração realizada com sucesso!");
+			Util.addMessageSucess("Alteração realizada com sucesso!");
 			resultado = true;
 		} catch (SQLException e) {
 			Util.addMessageError("Falha ao Alterar.");
@@ -97,7 +97,7 @@ public class EstoqueDAO extends DAO<ItemEstoque> {
 			stat.setInt(1, id);
 
 			stat.execute();
-			Util.addMessageError("Exclusão realizada com sucesso!");
+			Util.addMessageSucess("Exclusão realizada com sucesso!");
 			resultado = true;
 		} catch (SQLException e) {
 			Util.addMessageError("Falha ao Excluir.");
