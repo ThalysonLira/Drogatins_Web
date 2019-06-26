@@ -50,22 +50,21 @@ public class EnderecoDAO extends DAO<Endereco> {
 			// salvando cliente
 			stat = getConnection().prepareStatement("INSERT INTO cliente ( " + " nome, " + " cpf, " + " endereco, "
 					+ " datanascimento, " + " login," + " senha," + " perfil," + " sexo ) " + "VALUES ( " + " ?, "
-					+ " ?, " + " ?, " + " ?," + " ?, " + " ?, " + " ?, " + " ?, " + " ? ) ");
+					+ " ?, " + " ?, " + " ?," + " ?, " + " ?, " + " ?, " + " ? ) ");
 
 			stat.setString(1, cliente.getNome());
 			stat.setString(2, cliente.getCpf());
 			stat.setInt(3, lastId);
 			stat.setDate(4, (cliente.getDataNascimento() == null ?
 					null : java.sql.Date.valueOf(cliente.getDataNascimento())));
-			stat.setInt(5, lastId);
-			stat.setString(6, cliente.getLogin());
-			stat.setString(7, cliente.getSenha());
-			stat.setInt(8, cliente.getPerfil().getValue());
-			stat.setInt(9, cliente.getSexo().getValue());
+			stat.setString(5, cliente.getLogin());
+			stat.setString(6, cliente.getSenha());
+			stat.setInt(7, cliente.getPerfil().getValue());
+			stat.setInt(8, cliente.getSexo().getValue());
 
 			stat.execute();
 
-			Util.addMessageError("Cadastro realizado com sucesso!");
+			Util.addMessageSucess("Cadastro realizado com sucesso!");
 			resultado = true;
 		} catch (SQLException e) {
 			Util.addMessageError("Falha ao incluir.");
@@ -129,7 +128,7 @@ public class EnderecoDAO extends DAO<Endereco> {
 
 			stat.execute();
 
-			Util.addMessageError("Cadastro realizado com sucesso!");
+			Util.addMessageSucess("Cadastro realizado com sucesso!");
 			resultado = true;
 		} catch (SQLException e) {
 			Util.addMessageError("Falha ao incluir.");
@@ -191,7 +190,7 @@ public class EnderecoDAO extends DAO<Endereco> {
 
 			stat.execute();
 
-			Util.addMessageError("Cadastro realizado com sucesso!");
+			Util.addMessageSucess("Cadastro realizado com sucesso!");
 			resultado = true;
 		} catch (SQLException e) {
 			Util.addMessageError("Falha ao incluir.");
@@ -239,7 +238,7 @@ public class EnderecoDAO extends DAO<Endereco> {
 			stat.setInt(8, obj.getId());
 
 			stat.execute();
-			Util.addMessageError("Alteração realizada com sucesso!");
+			Util.addMessageSucess("Alteração realizada com sucesso!");
 			resultado = true;
 		} catch (SQLException e) {
 			Util.addMessageError("Falha ao Alterar.");
@@ -271,7 +270,7 @@ public class EnderecoDAO extends DAO<Endereco> {
 			stat.setInt(1, id);
 
 			stat.execute();
-			Util.addMessageError("Exclusão realizada com sucesso!");
+			Util.addMessageSucess("Exclusão realizada com sucesso!");
 			resultado = true;
 		} catch (SQLException e) {
 			Util.addMessageError("Falha ao Excluir.");

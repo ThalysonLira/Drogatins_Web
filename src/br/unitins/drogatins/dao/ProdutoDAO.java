@@ -25,16 +25,15 @@ public class ProdutoDAO extends DAO<Produto> {
 		
 		try {
 			stat = getConnection().prepareStatement("INSERT INTO produto ( " + " nome, " + " marca, " + " lote, "
-					+ " desconto," + " valor," + " fornecedor ) " + "VALUES ( " + " ?, " + " ?, " + " ?, " + " ?," + " ?," + " ? ) ");
+					+ " desconto," + " valor ) " + "VALUES ( " + " ?, " + " ?, " + " ?," + " ?," + " ? ) ");
 			stat.setString(1, obj.getNome());
 			stat.setString(2, obj.getMarca());
 			stat.setString(3, obj.getLote());
 			stat.setInt(4, obj.getDesconto());
 			stat.setDouble(5, obj.getValor());
-			stat.setInt(6, obj.getFornecedor().getId());
 			stat.execute();
 			
-			Util.addMessageError("Cadastro realizado com sucesso!");
+			Util.addMessageSucess("Cadastro realizado com sucesso!");
 			resultado = true;
 		} catch (SQLException e) {
 			Util.addMessageError("Falha ao incluir.");
@@ -52,7 +51,7 @@ public class ProdutoDAO extends DAO<Produto> {
 	@Override
 	public boolean update(Produto obj) {
 		boolean resultado = false;
-
+		
 		// verificando se tem uma conexao valida
 		if (getConnection() == null) {
 			Util.addMessageError("Falha ao conectar ao Banco de Dados.");
@@ -62,17 +61,16 @@ public class ProdutoDAO extends DAO<Produto> {
 		PreparedStatement stat = null;
 		try {
 			stat = getConnection().prepareStatement("UPDATE produto SET " + "  nome = ?, " + "  marca = ? "
-					+ "  lote = ? " + "  desconto = ?, " + "  valor = ?, " + "  fornecedor = ?, " + "WHERE id = ? ");
+					+ "  lote = ? " + "  desconto = ?, " + "  valor = ?, " + "WHERE id = ? ");
 			stat.setString(1, obj.getNome());
 			stat.setString(2, obj.getMarca());
 			stat.setString(3, obj.getLote());
 			stat.setInt(4, obj.getDesconto());
 			stat.setDouble(5, obj.getValor());
-			stat.setInt(6, obj.getFornecedor().getId());
-			stat.setInt(7, obj.getId());
+			stat.setInt(6, obj.getId());
 
 			stat.execute();
-			Util.addMessageError("Alteração realizada com sucesso!");
+			Util.addMessageSucess("Alteração realizada com sucesso!");
 			resultado = true;
 		} catch (SQLException e) {
 			Util.addMessageError("Falha ao Alterar.");
@@ -104,7 +102,7 @@ public class ProdutoDAO extends DAO<Produto> {
 			stat.setInt(1, id);
 
 			stat.execute();
-			Util.addMessageError("Exclusão realizada com sucesso!");
+			Util.addMessageSucess("Exclusão realizada com sucesso!");
 			resultado = true;
 		} catch (SQLException e) {
 			Util.addMessageError("Falha ao Excluir.");
@@ -131,8 +129,6 @@ public class ProdutoDAO extends DAO<Produto> {
 
 		PreparedStatement stat = null;
 		
-		FornecedorDAO fornecedor = new FornecedorDAO();
-
 		try {
 			stat = getConnection().prepareStatement("SELECT * FROM Produto WHERE id = ?");
 			stat.setInt(1, id);
@@ -146,9 +142,7 @@ public class ProdutoDAO extends DAO<Produto> {
 				produto.setLote(rs.getString("lote"));
 				produto.setDesconto(rs.getInt("desconto"));
 				produto.setValor(rs.getDouble("valor"));
-				produto.setFornecedor(fornecedor.findById(rs.getInt("fornecedor")));
 				
-				fornecedor.closeConnection();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -176,8 +170,6 @@ public class ProdutoDAO extends DAO<Produto> {
 
 		PreparedStatement stat = null;
 		
-		FornecedorDAO fornecedor = new FornecedorDAO();
-
 		try {
 			stat = getConnection().prepareStatement("SELECT * FROM Produto");
 			ResultSet rs = stat.executeQuery();
@@ -189,9 +181,7 @@ public class ProdutoDAO extends DAO<Produto> {
 				produto.setLote(rs.getString("lote"));
 				produto.setDesconto(rs.getInt("desconto"));
 				produto.setValor(rs.getDouble("valor"));
-				produto.setFornecedor(fornecedor.findById(rs.getInt("fornecedor")));
 
-				fornecedor.closeConnection();
 				listaProduto.add(produto);
 			}
 		} catch (SQLException e) {
@@ -219,8 +209,6 @@ public class ProdutoDAO extends DAO<Produto> {
 
 		PreparedStatement stat = null;
 		
-		FornecedorDAO fornecedor = new FornecedorDAO();
-
 		try {
 			stat = getConnection().prepareStatement("SELECT * FROM Produto WHERE nome ILIKE ?");
 			stat.setString(1, (nome == null ? "%" : "%" + nome + "%"));
@@ -234,9 +222,7 @@ public class ProdutoDAO extends DAO<Produto> {
 				produto.setLote(rs.getString("lote"));
 				produto.setDesconto(rs.getInt("desconto"));
 				produto.setValor(rs.getDouble("valor"));
-				produto.setFornecedor(fornecedor.findById(rs.getInt("fornecedor")));
 
-				fornecedor.closeConnection();
 				listaProduto.add(produto);
 			}
 		} catch (SQLException e) {

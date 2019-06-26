@@ -98,6 +98,8 @@ public class CadastroEstoqueController implements Serializable{
 	}
 
 	public ItemEstoque getItem() {
+		if(item == null)
+			setItem(new ItemEstoque());
 		return item;
 	}
 

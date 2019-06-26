@@ -46,7 +46,7 @@ public class FornecedorDAO extends DAO<Fornecedor> {
 
 			stat.execute();
 
-			Util.addMessageError("Alteração realizada com sucesso!");
+			Util.addMessageSucess("Alteração realizada com sucesso!");
 			resultado = true;
 		} catch (SQLException e) {
 			Util.addMessageError("Falha ao Alterar.");
@@ -78,7 +78,7 @@ public class FornecedorDAO extends DAO<Fornecedor> {
 			stat.setInt(1, id);
 
 			stat.execute();
-			Util.addMessageError("Exclusão realizada com sucesso!");
+			Util.addMessageSucess("Exclusão realizada com sucesso!");
 			resultado = true;
 		} catch (SQLException e) {
 			Util.addMessageError("Falha ao Excluir.");

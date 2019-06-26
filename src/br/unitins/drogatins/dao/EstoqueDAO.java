@@ -23,14 +23,15 @@ public class EstoqueDAO extends DAO<ItemEstoque> {
 
 		PreparedStatement stat = null;
 		try {
-			stat = getConnection().prepareStatement(
-					"INSERT INTO estoque ( " + " produto, " + " quantidade, " + "VALUES ( " + " ?, " + " ? ) ");
+			stat = getConnection().prepareStatement("INSERT INTO estoque ( " + " produto, " + " nome, "
+					+ " quantidade, " + "VALUES ( " + " ?, " + " ?, " + " ? ) ");
 
 			stat.setInt(1, obj.getProduto().getId());
-			stat.setInt(2, obj.getQuant());
+			stat.setString(2, obj.getProduto().getNome() + " - " + obj.getProduto().getMarca());
+			stat.setInt(3, obj.getQuant());
 
 			stat.execute();
-			Util.addMessageError("Cadastro realizado com sucesso!");
+			Util.addMessageSucess("Cadastro realizado com sucesso!");
 			resultado = true;
 		} catch (SQLException e) {
 			Util.addMessageError("Falha ao incluir.");
@@ -59,13 +60,14 @@ public class EstoqueDAO extends DAO<ItemEstoque> {
 		PreparedStatement stat = null;
 		try {
 			stat = getConnection().prepareStatement(
-					"UPDATE estoque SET " + "  produto = ?, " + "  quantidade = ? " + "WHERE id = ? ");
+					"UPDATE estoque SET " + "  produto = ?, " + "  nome = ?, " + "  quantidade = ? " + "WHERE id = ? ");
 			stat.setInt(1, obj.getProduto().getId());
-			stat.setInt(2, obj.getQuant());
-			stat.setInt(3, obj.getId());
+			stat.setString(2, obj.getNome());
+			stat.setInt(3, obj.getQuant());
+			stat.setInt(4, obj.getId());
 
 			stat.execute();
-			Util.addMessageError("Alteração realizada com sucesso!");
+			Util.addMessageSucess("Alteração realizada com sucesso!");
 			resultado = true;
 		} catch (SQLException e) {
 			Util.addMessageError("Falha ao Alterar.");
@@ -97,7 +99,7 @@ public class EstoqueDAO extends DAO<ItemEstoque> {
 			stat.setInt(1, id);
 
 			stat.execute();
-			Util.addMessageError("Exclusão realizada com sucesso!");
+			Util.addMessageSucess("Exclusão realizada com sucesso!");
 			resultado = true;
 		} catch (SQLException e) {
 			Util.addMessageError("Falha ao Excluir.");
@@ -134,6 +136,7 @@ public class EstoqueDAO extends DAO<ItemEstoque> {
 				item = new ItemEstoque();
 				item.setId(rs.getInt("id"));
 				item.setProduto(produto.findById(rs.getInt("produto")));
+				item.setNome(rs.getString("nome"));
 				item.setQuant(rs.getInt("quantidade"));
 			}
 		} catch (SQLException e) {
@@ -149,20 +152,20 @@ public class EstoqueDAO extends DAO<ItemEstoque> {
 
 		return item;
 	}
-	
+
 	public List<ItemEstoque> findByNome(String nome) {
 		// verificando se tem uma conexao valida
 		if (getConnection() == null) {
 			Util.addMessageError("Falha ao conectar ao Banco de Dados.");
 			return null;
 		}
-		
+
 		List<ItemEstoque> estoque = new ArrayList<ItemEstoque>();
 		PreparedStatement stat = null;
 		ProdutoDAO produto = new ProdutoDAO();
 
 		try {
-			stat = getConnection().prepareStatement("SELECT * FROM Estoque WHERE produto ILIKE ?");
+			stat = getConnection().prepareStatement("SELECT * FROM Estoque WHERE nome ILIKE ?");
 			stat.setString(1, (nome == null ? "%" : "%" + nome + "%"));
 			ResultSet rs = stat.executeQuery();
 
@@ -170,6 +173,7 @@ public class EstoqueDAO extends DAO<ItemEstoque> {
 				ItemEstoque item = new ItemEstoque();
 				item.setId(rs.getInt("id"));
 				item.setProduto(produto.findById(rs.getInt("produto")));
+				item.setNome(rs.getString("nome"));
 				item.setQuant(rs.getInt("quantidade"));
 
 				produto.closeConnection();
@@ -186,7 +190,7 @@ public class EstoqueDAO extends DAO<ItemEstoque> {
 				e.printStackTrace();
 			}
 		}
-		
+
 		return estoque;
 	}
 
@@ -209,8 +213,9 @@ public class EstoqueDAO extends DAO<ItemEstoque> {
 				item = new ItemEstoque();
 				item.setId(rs.getInt("id"));
 				item.setProduto(dao.findById(rs.getInt("produto")));
+				item.setNome(rs.getString("nome"));
 				item.setQuant(rs.getInt("quantidade"));
-				
+
 				dao.closeConnection();
 			}
 		} catch (SQLException e) {
@@ -223,7 +228,7 @@ public class EstoqueDAO extends DAO<ItemEstoque> {
 				e.printStackTrace();
 			}
 		}
-		
+
 		return item;
 	}
 
@@ -247,6 +252,7 @@ public class EstoqueDAO extends DAO<ItemEstoque> {
 				ItemEstoque item = new ItemEstoque();
 				item.setId(rs.getInt("id"));
 				item.setProduto(produto.findById(rs.getInt("produto")));
+				item.setNome(rs.getString("nome"));
 				item.setQuant(rs.getInt("quantidade"));
 
 				estoque.add(item);

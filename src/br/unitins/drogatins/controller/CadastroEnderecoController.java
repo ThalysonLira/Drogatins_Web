@@ -43,7 +43,7 @@ public class CadastroEnderecoController implements Serializable {
 //		getEndereco().setSenha(Util.encrypt(getEndereco().getSenha()));
 		
 		EnderecoDAO dao = new EnderecoDAO();
-		if (getEndereco() == null) {
+		if (getEndereco().getId() == null) {
 			getUsuario().setEndereco(getEndereco());
 			
 			if(Cliente.class == usuario.getClass()) {
@@ -115,8 +115,8 @@ public class CadastroEnderecoController implements Serializable {
 	}
 
 	public Endereco getEndereco() {
-		if (endereco == null)
-			endereco = new Endereco();
+		if(endereco == null)
+			setEndereco(new Endereco());
 		return endereco;
 	}
 

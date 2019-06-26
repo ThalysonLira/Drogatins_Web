@@ -41,7 +41,7 @@ public class FuncionarioDAO extends DAO<Funcionario> {
 			stat.setInt(8, obj.getSituacao().getValue());
 
 			stat.execute();
-			Util.addMessageError("Cadastro realizado com sucesso!");
+			Util.addMessageSucess("Cadastro realizado com sucesso!");
 			resultado = true;
 		} catch (SQLException e) {
 			Util.addMessageError("Falha ao incluir.");
@@ -83,7 +83,7 @@ public class FuncionarioDAO extends DAO<Funcionario> {
 			stat.setInt(9, obj.getId());
 
 			stat.execute();
-			Util.addMessageError("Alteração realizada com sucesso!");
+			Util.addMessageSucess("Alteração realizada com sucesso!");
 			resultado = true;
 		} catch (SQLException e) {
 			Util.addMessageError("Falha ao Alterar.");
@@ -115,7 +115,7 @@ public class FuncionarioDAO extends DAO<Funcionario> {
 			stat.setInt(1, id);
 
 			stat.execute();
-			Util.addMessageError("Exclusão realizada com sucesso!");
+			Util.addMessageSucess("Exclusão realizada com sucesso!");
 			resultado = true;
 		} catch (SQLException e) {
 			Util.addMessageError("Falha ao Excluir.");
