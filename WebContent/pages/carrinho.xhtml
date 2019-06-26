@@ -9,7 +9,8 @@
 	<ui:define name="conteudo">
 		<div class="container">
 			<div class="navbar navbar-inverse">
-				<div class="navbar-brand" style="width: 100%; text-align: center;">Carrinho de Compras</div>
+				<div class="navbar-brand" style="width: 100%; text-align: center;">Carrinho
+					de Compras</div>
 			</div>
 
 			<h:form>
@@ -31,6 +32,11 @@
 					</h:column>
 
 					<h:column>
+						<f:facet name="header">Desconto</f:facet>
+						<h:outputLabel value="#{obj.item.produto.desconto}%"/>
+					</h:column>
+
+					<h:column>
 						<f:facet name="header">Ação</f:facet>
 						<h:commandButton value="Remover"
 							actionListener="#{carrinhoController.remover(obj)}">
@@ -39,10 +45,11 @@
 					</h:column>
 
 				</h:dataTable>
-				
+
 				<h:outputLabel value="Total: " styleClass="control-label" />
-				<h:outputLabel value="R$ #{carrinhoController.valorTotal}" styleClass="control-label" />
-				
+				<h:outputLabel value="R$ #{carrinhoController.valorTotal}"
+					styleClass="control-label" />
+
 				<h:commandButton value="Finalizar Venda"
 					actionListener="#{carrinhoController.finalizar}">
 					<f:ajax execute="@all" render="@form" />

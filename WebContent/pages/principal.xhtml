@@ -30,12 +30,15 @@
 
 					<h:column>
 						<f:facet name="header">Valor</f:facet>
-						<h:outputLabel value="#{obj.produto.valor}" />
+						<h:outputLabel value="#{obj.produto.valor}">
+							<f:convertNumber locale="pt_BR" currencySymbol="R$"
+								type="currency" />
+						</h:outputLabel>
 					</h:column>
 
 					<h:column>
-						<f:facet name="header">Quantidade Disponível</f:facet>
-						<h:outputLabel value="#{obj.quant}" />
+						<f:facet name="header">Desconto</f:facet>
+						<h:outputLabel value="#{obj.produto.desconto}%" />
 					</h:column>
 
 					<h:column>

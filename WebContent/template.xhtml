@@ -18,18 +18,20 @@
 	<div class="wrapper">
 		<div class="box navbar navbar-inverse header">
 			<div id="logo" class="col-md-2 col-logo">
-				<img src="resources/img/drogatins.png" alt="Drogatins"/>
+				<img src="../../resources/img/drogatins.png" alt="Drogatins" />
 			</div>
 			<div id="usuer" class="col-md-10 col-usuario">
 				<div id="list" class="container">
 					<h:form>
-						<p class="float-left"><h:outputLabel style="text-align: left;"
-							value="Olá, #{templateController.usuarioLogado.nome}" /> </p>
+						<p class="float-left">
+							<h:outputLabel style="text-align: left;"
+								value="Olá, #{templateController.usuarioLogado.nome}" />
+						</p>
 						<p class="float-right">
-							<img id="cart" src="resources/img/shopping-cart.png" alt="Carrinho">
-							
-							</img>
-							<h:outputLabel value="(#{templateController.qtdItensCarrinho})"/>
+							<a href="/Drogatins_Web/faces/pages/carrinho.xhtml"> <img
+								src="../../resources/img/shopping-cart.png" alt="Carrinho" /> <h:outputLabel
+									value="(#{templateController.qtdItensCarrinho})" />
+							</a>
 						</p>
 					</h:form>
 				</div>
@@ -71,8 +73,7 @@
 					<h:commandLink value="Listagem de Estoque"
 						action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/consultaestoque.xhtml')}" />
 					<br />
-					<h:commandLink
-						value="Detalhe de Venda"
+					<h:commandLink value="Detalhe de Venda"
 						action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/detalhesvenda.xhtml')}" />
 					<br />
 				</div>
