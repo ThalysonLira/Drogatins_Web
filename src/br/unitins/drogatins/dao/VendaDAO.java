@@ -47,7 +47,7 @@ public class VendaDAO extends DAO<Venda> {
 						+ "  item ) " + "VALUES ( " + " ?, " + " ?, " + " ? ) ");
 
 				stat.setInt(1, lastId);
-				stat.setDouble(2, itemVenda.getValor());
+				stat.setDouble(2, itemVenda.getItem().getProduto().getValor());
 				stat.setInt(3, itemVenda.getItem().getId());
 
 				stat.execute();

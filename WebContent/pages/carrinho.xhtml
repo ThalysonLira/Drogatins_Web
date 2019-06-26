@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<ui:composition template="../template.xhtml">
+	<ui:define name="conteudo">
+		<div class="container">
+			<div class="navbar navbar-inverse">
+				<div class="navbar-brand" style="width: 100%; text-align: center;">Carrinho de Compras</div>
+			</div>
+
+			<h:form>
+				<h:messages style="color:red" />
+
+				<h:dataTable value="#{carrinhoController.venda.listaItemVenda}"
+					var="obj">
+					<h:column>
+						<f:facet name="header">Produto</f:facet>
+						<h:outputLabel value="#{obj.item.nome}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Valor</f:facet>
+						<h:outputLabel value="#{obj.item.produto.valor}">
+							<f:convertNumber locale="pt_BR" currencySymbol="R$"
+								type="currency" />
+						</h:outputLabel>
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Ação</f:facet>
+						<h:commandButton value="Remover"
+							actionListener="#{carrinhoController.remover(obj)}">
+							<f:ajax render="@all" execute="@this" />
+						</h:commandButton>
+					</h:column>
+
+				</h:dataTable>
+				
+				<h:outputLabel value="Total: " styleClass="control-label" />
+				<h:outputLabel value="R$ #{carrinhoController.valorTotal}" styleClass="control-label" />
+				
+				<h:commandButton value="Finalizar Venda"
+					actionListener="#{carrinhoController.finalizar}">
+					<f:ajax execute="@all" render="@form" />
+				</h:commandButton>
+
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>
+
+</html>

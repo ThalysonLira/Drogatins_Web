@@ -7,46 +7,55 @@
 		content="width=device-width, initial-scale=1"
 		http-equiv="X-UA-Conpatible" />
 	<h:outputStylesheet library="css" name="bootstrap.min.css" />
-	<h:outputStylesheet library="css" name="template.css"/>  
+	<h:outputStylesheet library="css" name="template.css" />
 </h:head>
 
 <h:body>
-	 <div class="wrapper">
-	 	<div class="box navbar navbar-inverse header">
-			<h1 >.: Drogatins :.</h1>
+	<div class="wrapper">
+		<div class="box navbar navbar-inverse header">
+			<h1>.: Drogatins :.</h1>
 			<div style="text-align: right;">
 				<h:form>
-					<h:outputLabel value="#{templateController.usuarioLogado.nome}"/>
-					<h:commandLink value=" (Sair)" 
-						action="#{templateController.encerrarSessao}"
-						style="color:white"/>
+					<h:outputLabel value="#{templateController.usuarioLogado.nome}" />
+					<h:commandLink value=" (Sair)"
+						action="#{templateController.encerrarSessao}" style="color:white" />
 				</h:form>
 			</div>
-	 	</div>
+		</div>
 		<div class="box sidebar" style="text-align: center;">
 			<ui:insert name="menu">
 				<h1>Menu</h1>
 				<h:form>
-					
+
 					<h:commandLink value="Início"
-						action="template.xhtml?faces-redirect=true" /> <br/>
-					<h:commandLink value="Cadastro de Cliente" 
+						action="#{templateController.redirecionar('/Drogatins_Web/faces/template.xhtml')}" />
+					<br />
+					<h:commandLink value="Cadastro de Cliente"
 						disabled="#{templateController.usuarioLogado.perfil != Perfil.ADMINISTRADOR}"
-						action="pages/cadastrocliente.xhtml?faces-redirect=true" /> <br/>
+						action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/cadastrocliente.xhtml')}" />
+					<br />
 					<h:commandLink value="Cadastro de Funcionário"
-						action="pages/cadastrofuncionario.xhtml?faces-redirect=true" /> <br/>
+						action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/cadastrofuncionario.xhtml')}" />
+					<br />
 					<h:commandLink value="Cadastro de Fornecedor"
-						action="pages/cadastrofornecedor.xhtml?faces-redirect=true" /> <br/>
+						action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/cadastrofornecedor.xhtml')}" />
+					<br />
 					<h:commandLink value="Cadastro de Produto"
-						action="pages/cadastroproduto.xhtml?faces-redirect=true" /> <br/>
-					<h:commandLink value="Carrinho"
-						action="#" /> <br/>
-						
+						action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/cadastroproduto.xhtml')}" />
+					<br />
+					<h:commandLink value="Estoque"
+						action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/cadastroestoque.xhtml')}" />
+					<br />
+					<h:commandLink
+						value="Carrinho (#{templateController.qtdItensCarrinho})"
+						action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/carrinho.xhtml')}" />
+					<br />
+
 				</h:form>
 			</ui:insert>
 		</div>
 		<div class="box content">
-			<br/>
+			<br />
 			<ui:insert name="conteudo">
 			</ui:insert>
 		</div>

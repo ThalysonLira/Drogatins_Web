@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.enterprise.context.RequestScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import br.unitins.drogatins.application.Session;
@@ -17,12 +17,13 @@ import br.unitins.drogatins.model.Usuario;
 import br.unitins.drogatins.model.Venda;
 
 @Named
-@RequestScoped
+@ViewScoped
 public class CarrinhoController implements Serializable {
 
 	private static final long serialVersionUID = 1878498306666000924L;
 
 	private Venda venda;
+	private Double valorTotal;
 
 	public void adicionar(int id) {
 		// pesquisa o item selecionado
@@ -42,13 +43,18 @@ public class CarrinhoController implements Serializable {
 
 		// reservando item do estoque para venda
 		itemEstoque.setQuant(itemEstoque.getQuant() - 1);
+		if (dao.update(itemEstoque)) {
+			// informando item a ser vendido
+			item.setItem(itemEstoque);
+			item.setValor(itemEstoque.getProduto().getValor());
 
-		// informando item a ser vendido
-		item.setItem(itemEstoque);
-		item.setValor(itemEstoque.getProduto().getValor());
+			// adiciona o item no objeto de referencia do carrinho
+			carrinho.add(item);
+		} else {
+			Util.addMessageError("Erro ao atualizar!");
+		}
 
-		// adiciona o item no objeto de referencia do carrinho
-		carrinho.add(item);
+		dao.closeConnection();
 
 		// atualiza o carrinho
 		Session.getInstance().setAttribute("carrinho", carrinho);
@@ -57,20 +63,26 @@ public class CarrinhoController implements Serializable {
 	}
 
 	public void remover(ItemVenda item) {
+		EstoqueDAO dao = new EstoqueDAO();
+
 		// verifica se existe o carrinho na sessao
 		if (Session.getInstance().getAttribute("carrinho") == null) {
 			// adiciona o carrinho na sessao
 			Session.getInstance().setAttribute("carrinho", new ArrayList<ItemVenda>());
 		}
 		// busca o carrinho da sessao
-		List<ItemVenda> carrinho = 
-				(List<ItemVenda>) Session.getInstance().getAttribute("carrinho");
+		List<ItemVenda> carrinho = (List<ItemVenda>) Session.getInstance().getAttribute("carrinho");
 
-		// adiciona o item no objeto de referencia do carrinho
-		carrinho.remove(item);
-		
 		// realocando item no estoque
 		item.getItem().setQuant(item.getItem().getQuant() + 1);
+		if (dao.update(item.getItem())) {
+			// adiciona o item no objeto de referencia do carrinho
+			carrinho.remove(item);
+		} else {
+			Util.addMessageError("Erro ao atualizar!");
+		}
+
+		dao.closeConnection();
 
 		// atualiza o carrinho
 		Session.getInstance().setAttribute("carrinho", carrinho);
@@ -82,6 +94,26 @@ public class CarrinhoController implements Serializable {
 		getVenda().setCliente((Usuario) Session.getInstance().getAttribute("usuarioLogado"));
 		VendaDAO dao = new VendaDAO();
 		dao.create(getVenda());
+	}
+
+	public Double getValorTotal() {
+		valorTotal = 0.0;
+
+		// verifica se existe o carrinho na sessao
+		if (Session.getInstance().getAttribute("carrinho") == null) {
+			// adiciona o carrinho na sessao
+			Session.getInstance().setAttribute("carrinho", new ArrayList<ItemVenda>());
+		}
+		// busca o carrinho da sessao
+		List<ItemVenda> carrinho = (List<ItemVenda>) Session.getInstance().getAttribute("carrinho");
+
+		if (carrinho.size() > 0) {
+			for (int i = 0; i < carrinho.size(); i++) {
+				valorTotal += carrinho.get(i).getValor();
+			}
+		}
+
+		return valorTotal;
 	}
 
 	public Venda getVenda() {

@@ -43,7 +43,7 @@
 						<f:facet name="header">Ação</f:facet>
 						<h:commandButton value="Adicionar ao carrinho"
 							actionListener="#{carrinhoController.adicionar(obj.id)}">
-							<f:ajax render="@form" execute="@this" />
+							<f:ajax render="@all" execute="@this" />
 						</h:commandButton>
 						<h:commandButton value="Alterar"
 							actionListener="#{consultaEstoqueController.editar(obj)}">

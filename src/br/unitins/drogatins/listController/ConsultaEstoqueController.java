@@ -32,7 +32,7 @@ public class ConsultaEstoqueController implements Serializable {
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 		flash.put("itemFlash", item);
 
-		Util.redirect("cadastroitem.xhtml");
+		Util.redirect("cadastroestoque.xhtml");
 	}
 
 	public void excluir(ItemEstoque item) {

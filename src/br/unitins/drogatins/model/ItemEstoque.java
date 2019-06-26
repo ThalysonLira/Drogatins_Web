@@ -4,6 +4,7 @@ public class ItemEstoque {
 	
 	private Integer id;
 	private Produto produto;
+	private String nome;
 	private Integer quant;
 	
 	public Integer getId() {
@@ -22,6 +23,14 @@ public class ItemEstoque {
 		this.produto = produto;
 	}
 	
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
 	public Integer getQuant() {
 		return quant;
 	}
