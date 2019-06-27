@@ -44,13 +44,11 @@
 
 					<h:column>
 						<f:facet name="header">Ação</f:facet>
-						<h:commandButton value="Alterar"
-							disabled="#{templateController.usuarioLogado.perfil == Perfil.CLIENTE}"
+						<h:commandButton value="Alterar" class="btn btn-warning"
 							actionListener="#{consultaEstoqueController.editar(obj)}">
 							<f:ajax render="@form" execute="@this" />
 						</h:commandButton>
-						<h:commandButton value="Remover"
-							disabled="#{templateController.usuarioLogado.perfil == Perfil.CLIENTE}"
+						<h:commandButton value="Remover" class="btn btn-danger"
 							actionListener="#{consultaEstoqueController.excluir(obj)}">
 							<f:ajax render="@form" execute="@this" />
 						</h:commandButton>

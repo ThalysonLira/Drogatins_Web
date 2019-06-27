@@ -66,11 +66,11 @@
 
 					<h:column>
 						<f:facet name="header">Ação</f:facet>
-						<h:commandButton value="Alterar"
+						<h:commandButton value="Alterar" class="btn btn-warning"
 							actionListener="#{consultaFuncionarioController.editar(obj)}">
 							<f:ajax render="@form" execute="@this" />
 						</h:commandButton>
-						<h:commandButton value="Remover"
+						<h:commandButton value="Remover" class="btn btn-danger"
 							actionListener="#{consultaFuncionarioController.excluir(obj)}">
 							<f:ajax render="@form" execute="@this" />
 						</h:commandButton>

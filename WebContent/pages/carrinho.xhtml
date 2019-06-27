@@ -50,7 +50,7 @@
 				<h:outputLabel value="R$ #{carrinhoController.valorTotal}"
 					styleClass="control-label" />
 
-				<h:commandButton value="Finalizar Venda"
+				<h:commandButton value="Finalizar Venda" class="btn btn-primary"
 					actionListener="#{carrinhoController.finalizar}">
 					<f:ajax execute="@all" render="@form" />
 				</h:commandButton>

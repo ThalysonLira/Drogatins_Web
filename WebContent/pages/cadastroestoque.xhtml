@@ -33,21 +33,21 @@
 
 						<div class="row">
 							<div class="col-md-3 mb-3">
-								<h:commandButton value="Salvar"
+								<h:commandButton value="Salvar" class="btn btn-primary"
 									actionListener="#{cadastroEstoqueController.salvar}"
 									styleClass="col-md-2 mb-3 btn btn-default form-control">
 									<f:ajax execute="@form" render="@form formDataTable" />
 								</h:commandButton>
 							</div>
 							<div class="col-md-3 mb-3">
-								<h:commandButton value="Cancelar"
+								<h:commandButton value="Cancelar" class="btn btn-danger"
 									actionListener="#{cadastroEstoqueController.limpar}"
 									styleClass="col-md-2 mb-3 btn btn-default form-control">
 									<f:ajax execute="@this" render="@all" />
 								</h:commandButton>
 							</div>
 							<div class="col-md-3 mb-3">
-								<h:commandButton value="Voltar"
+								<h:commandButton value="Voltar" class="btn btn-info"
 									actionListener="#{cadastroEstoqueController.voltar}"
 									styleClass="col-md-2 mb-3 btn btn-default form-control" />
 							</div>
