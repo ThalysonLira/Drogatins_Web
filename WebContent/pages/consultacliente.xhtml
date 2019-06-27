@@ -19,10 +19,11 @@
 					<h:outputLabel value="Nome: " />
 					<h:inputText value="#{consultaClienteController.busca}" />
 
-					<h:commandButton value="Pesquisar"
+					<h:commandButton value="Pesquisar" class="btn btn-info"
 						actionListener="#{consultaClienteController.pesquisar}">
 						<f:ajax execute="panelForm" render="@all" />
 					</h:commandButton>
+					<br/>
 
 				</h:panelGrid>
 

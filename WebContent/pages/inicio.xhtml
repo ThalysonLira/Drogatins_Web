@@ -14,10 +14,11 @@
 					<h:outputLabel value="Nome: " />
 					<h:inputText value="#{consultaEstoqueController.busca}" />
 
-					<h:commandButton value="Pesquisar"
+					<h:commandButton value="Pesquisar" class="btn btn-info"
 						actionListener="#{consultaEstoqueController.pesquisar}">
 						<f:ajax execute="panelForm" render="@all" />
 					</h:commandButton>
+					<br/>
 
 				</h:panelGrid>
 
@@ -43,7 +44,7 @@
 
 					<h:column>
 						<f:facet name="header">Ação</f:facet>
-						<h:commandButton value="Adicionar ao carrinho"
+						<h:commandButton value="Adicionar ao carrinho" class="btn btn-primary"
 							actionListener="#{carrinhoController.adicionar(obj.id)}">
 							<f:ajax render="@all" execute="@this" />
 						</h:commandButton>

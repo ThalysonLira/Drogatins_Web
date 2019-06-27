@@ -2581,7 +2581,7 @@ caption {
 
 th {
 	text-align: center;
-	width: 150px;
+	width: 160px;
 }
 
 .table {
@@ -5016,7 +5016,7 @@ select[multiple].input-group-sm>.form-control, select[multiple].input-group-sm>.
 }
 
 .navbar-inverse .navbar-brand {
-	color: #9d9d9d;
+	color: #FFFFFF;
 }
 
 .navbar-inverse .navbar-brand:focus, .navbar-inverse .navbar-brand:hover
