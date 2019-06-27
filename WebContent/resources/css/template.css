@@ -26,12 +26,14 @@ body {
 	color: black;
 	font-weight: bold;
 	font-family: sans-serif;
+	text-align: center;
+	width: 93%;
 }
 
 .sidebar div {
 	font-size: 20px;
 	padding-top: 15px;
-	margin-left: -19px;
+	text-align: center;
 }
 
 .content {
@@ -56,8 +58,8 @@ body {
 @media only screen and (min-width: 500px) {
 	.wrapper {
 		grid-template-columns: 20% auto;
-		grid-template-areas: "header   header" "sidebar  content"
-			"footer   footer";
+		grid-template-areas: "header   header"   
+							"content   content";
 	}
 }
 
@@ -65,8 +67,7 @@ body {
 	.wrapper {
 		grid-gap: 0px;
 		grid-template-columns: 18% auto 40%;
-		grid-template-areas: "header  header  header" "sidebar content content"
-			"footer  footer  footer";
+		grid-template-areas: "header  header  header" "sidebar content content";
 		max-width: 100%;
 		min-height: 100%;
 		padding: 0;
@@ -87,7 +88,6 @@ body {
 	color: #FFF;
 	background-color: #11171d;
 	vertical-align: middle;
-	text-align: center;
 	height: 70px;
 }
 
@@ -102,28 +102,43 @@ body {
 	margin: 36px auto 7px;
 }
 
+img {
+	vertical-align: middle;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#nome_usuario {
+	display: inline-block;
+	position: absolute;
+	margin-bottom: .5rem;
+	font-size: 17px;
+	left: 20px;
+	bottom: -50px;
+	cursor: pointer;
+}
+
+#cont_carrinho {
+	position: absolute;
+	font-size: 17px;
+	bottom: -27px;
+	right: 20px;
+}
+
 #cart {
 	display: inline-block;
 	position: absolute;
 	margin-bottom: .5rem;
 	font-size: 17px;
-	right: 20px;
-	bottom: -28px;
+	right: 40px;
+	bottom: -27px;
 	cursor: pointer;
-}
-
-label {
-	display: inline-block;
-	position: absolute;
-	margin-bottom: .5rem;
-	font-size: 17px;
-	left: 14px;
-	bottom: -33px;
 }
 
 .footer {
 	grid-area: footer;
-	background-color: #171f26; 
+	background-color: #11171d;
 	height: 40px;
 	text-align: center;
 	vertical-align: middle;
@@ -133,10 +148,10 @@ label {
 	font-size: 150%;
 	position: fixed;
 	border-style: solid;
- 	border-width: 1px;
+	border-width: 1px;
 	border-color: black;
 	border-left: 0px;
-	border-right:  0px;
+	border-right: 0px;
 	border-bottom: 0px;
 }
 
@@ -146,4 +161,5 @@ label {
 	font-family: sans-serif;
 	margin-right: 15px;
 	margin-top: 15px;
+	text-align: right;
 }

@@ -6,10 +6,7 @@
 	<meta charset="utf-8" name="viewport"
 		content="width=device-width, initial-scale=1"
 		http-equiv="X-UA-Conpatible" />
-	<h:outputStylesheet library="lib"
-		name="/bootstrap/css/bootstrap.min.css" />
-	<h:outputStylesheet library="stylesheet"
-		name="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
 	<h:outputStylesheet library="css" name="template.css" />
 	<title>Drogatins</title>
 </h:head>
@@ -18,70 +15,57 @@
 	<div class="wrapper">
 		<div class="box navbar navbar-inverse header">
 			<div id="logo" class="col-md-2 col-logo">
-				<img src="../../resources/img/drogatins.png" alt="Drogatins" />
+				<img id="logo"
+					src="/Drogatins_Web/faces/resources/img/drogatins.png"
+					alt="Drogatins" />
 			</div>
 			<div id="usuer" class="col-md-10 col-usuario">
 				<div id="list" class="container">
-					<h:form>
-						<p class="float-left">
-							<h:outputLabel style="text-align: left;"
-								value="Olá, #{templateController.usuarioLogado.nome}" />
-						</p>
-						<p class="float-right">
-							<a href="/Drogatins_Web/faces/pages/carrinho.xhtml"> <img
-								src="../../resources/img/shopping-cart.png" alt="Carrinho" /> <h:outputLabel
-									value="(#{templateController.qtdItensCarrinho})" />
-							</a>
-						</p>
-					</h:form>
+					<h:outputLabel id="nome_usuario" style="text-align: left;"
+						value="Olá, #{templateController.usuarioLogado.nome}" />
+					<div id="cont_carrinho">
+						<a href="/Drogatins_Web/faces/pages/carrinho.xhtml"> <img
+							id="cart"
+							src="/Drogatins_Web/faces/resources/img/shopping-cart.png"
+							alt="Carrinho" /> <h:outputLabel id="cont_carrinho"
+								value="#{templateController.qtdItensCarrinho}" />
+						</a>
+					</div>
 				</div>
 			</div>
 		</div>
-		<div class="box sidebar" style="text-align: center;">
+		<div class="box sidebar">
 			<h:form>
-				<div class="container">
-					<h:commandLink value="Início"
-						action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/principal.xhtml')}" />
-					<br />
-					<h:commandLink value="Cadastro de Cliente"
-						action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/cadastrocliente.xhtml')}" />
-					<br />
-					<h:commandLink value="Consulta de Cliente"
-						action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/consultacliente.xhtml')}" />
-					<br />
-					<h:commandLink value="Cadastro de Fornecedor"
-						action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/cadastrofornecedor.xhtml')}" />
-					<br />
-					<h:commandLink value="Consulta de Fornecedor"
-						action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/consultafornecedor.xhtml')}" />
-					<br />
-					<h:commandLink value="Cadastro de Funcionario"
-						action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/cadastrofuncionario.xhtml')}" />
-					<br />
-					<h:commandLink value="Consulta de Funcionario"
-						action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/consultafuncionario.xhtml')}" />
-					<br />
-					<h:commandLink value="Cadastro de Produto"
-						action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/cadastroproduto.xhtml')}" />
-					<br />
-					<h:commandLink value="Consulta de Produto"
-						action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/consultaproduto.xhtml')}" />
-					<br />
-					<h:commandLink value="Entrada em Estoque"
-						action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/cadastroestoque.xhtml')}" />
-					<br />
-					<h:commandLink value="Listagem de Estoque"
-						action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/consultaestoque.xhtml')}" />
-					<br />
-					<h:commandLink value="Detalhe de Venda"
-						action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/detalhesvenda.xhtml')}" />
-					<br />
-										<h:commandLink value="Sair"
-						action="#{templateController.encerrarSessao}" />
-					<br />
-				</div>
-
-
+				<h:commandLink value="Início"
+					action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/inicio.xhtml')}" />
+				<br />
+				<h:commandLink value="Cliente"
+					disable="#{templateController.usuarioLogado.perfil.value > 3}"
+					action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/consultacliente.xhtml')}" />
+				<br />
+				<h:commandLink value="Fornecedor"
+					disable="#{templateController.usuarioLogado.perfil.value > 3}"
+					action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/consultafornecedor.xhtml')}" />
+				<br />
+				<h:commandLink value="Funcionario"
+					disable="#{templateController.usuarioLogado.perfil.value > 2}"
+					action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/consultafuncionario.xhtml')}" />
+				<br />
+				<h:commandLink value="Produto"
+					disable="#{templateController.usuarioLogado.perfil.value > 4}"
+					action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/consultaproduto.xhtml')}" />
+				<br />
+				<h:commandLink value="Estoque"
+					disable="#{templateController.usuarioLogado.perfil.value > 4}"
+					action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/consultaestoque.xhtml')}" />
+				<br />
+				<h:commandLink value="Detalhe de Venda"
+					disable="#{templateController.usuarioLogado.perfil.value > 2}"
+					action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/detalhesvenda.xhtml')}" />
+				<br />
+				<h:commandLink value="Sair"
+					action="#{templateController.encerrarSessao}" />
+				<br />
 			</h:form>
 		</div>
 		<div class="box content">
