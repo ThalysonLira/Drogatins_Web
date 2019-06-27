@@ -7,59 +7,59 @@
 
 <ui:composition template="../template.xhtml">
 	<ui:define name="conteudo">
-		<div class="container">
+		<div class="container" align="center">
 			<div class="navbar navbar-inverse">
 				<div class="navbar-brand" style="width: 100%; text-align: center;">Carrinho
 					de Compras</div>
 			</div>
 
-			<div class="row">
-				<div class="col-xs-12 col-xs-updated">
-					<h:form styleClass="form-horizontal">
-						<h:messages style="color:red" />
 
-						<h:dataTable value="#{carrinhoController.venda.listaItemVenda}"
-							var="obj">
-							<h:column>
-								<f:facet name="header">Produto</f:facet>
-								<h:outputLabel value="#{obj.item.nome}" />
-							</h:column>
+			<h:form>
+				<h:messages style="color:red" />
 
-							<h:column>
-								<f:facet name="header">Valor</f:facet>
-								<h:outputLabel value="#{obj.item.produto.valor}">
-									<f:convertNumber locale="pt_BR" currencySymbol="R$"
-										type="currency" />
-								</h:outputLabel>
-							</h:column>
+				<h:dataTable value="#{carrinhoController.venda.listaItemVenda}"
+					var="obj">
+					<h:column>
+						<f:facet name="header">Produto</f:facet>
+						<h:outputLabel value="#{obj.item.nome}" />
+					</h:column>
 
-							<h:column>
-								<f:facet name="header">Desconto</f:facet>
-								<h:outputLabel value="#{obj.item.produto.desconto}%" />
-							</h:column>
+					<h:column>
+						<f:facet name="header">Valor</f:facet>
+						<h:outputLabel value="#{obj.item.produto.valor}">
+							<f:convertNumber locale="pt_BR" currencySymbol="R$"
+								type="currency" />
+						</h:outputLabel>
+					</h:column>
 
-							<h:column>
-								<f:facet name="header">Ação</f:facet>
-								<h:commandButton value="Remover"
-									actionListener="#{carrinhoController.remover(obj)}">
-									<f:ajax render="@all" execute="@this" />
-								</h:commandButton>
-							</h:column>
+					<h:column>
+						<f:facet name="header">Desconto</f:facet>
+						<h:outputLabel value="#{obj.item.produto.desconto}%" />
+					</h:column>
 
-						</h:dataTable>
-
-						<h:outputLabel id="total"
-							value="Total: R$ #{carrinhoController.valorTotal}"
-							styleClass="control-label" />
-
-						<h:commandButton id="btnFinalizar" value="Finalizar Venda"
-							class="btn btn-primary"
-							actionListener="#{carrinhoController.finalizar}">
-							<f:ajax execute="@all" render="@form" />
+					<h:column>
+						<f:facet name="header">Ação</f:facet>
+						<h:commandButton value="Remover"
+							actionListener="#{carrinhoController.remover(obj)}">
+							<f:ajax render="@all" execute="@this" />
 						</h:commandButton>
-					</h:form>
+					</h:column>
+
+				</h:dataTable>
+
+				<div align="left">
+					<h:outputLabel id="total"
+						value="Total: R$ #{carrinhoController.valorTotal}"
+						styleClass="control-label" />
 				</div>
-			</div>
+				<div align="right">
+					<h:commandButton id="btnFinalizar" value="Finalizar Venda"
+						class="btn btn-primary"
+						actionListener="#{carrinhoController.finalizar}">
+						<f:ajax execute="@all" render="@form" />
+					</h:commandButton>
+				</div>
+			</h:form>
 		</div>
 	</ui:define>
 </ui:composition>

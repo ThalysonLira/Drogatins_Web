@@ -29,7 +29,7 @@ public class VendaDAO extends DAO<Venda> {
 		PreparedStatement stat = null;
 		try {
 			stat = getConnection().prepareStatement(
-					"INSERT INTO venda ( " + "  data, " + "  cliente " + "  total  ) " + "VALUES ( " + " ?, " + " ?, " + " ? ) ",
+					"INSERT INTO venda ( " + "  data, " + "  cliente, " + "  total  ) " + "VALUES ( " + " ?, " + " ?, " + " ? ) ",
 					Statement.RETURN_GENERATED_KEYS);
 			stat.setDate(1, Date.valueOf(LocalDate.now()));
 			stat.setInt(2, obj.getCliente().getId());
@@ -54,7 +54,7 @@ public class VendaDAO extends DAO<Venda> {
 				stat.close();
 			}
 
-			Util.addMessageSucess("Cadastro realizado com sucesso!");
+			Util.addMessageSucess("Compra  encerrada!");
 			resultado = true;
 		} catch (SQLException e) {
 			Util.addMessageError("Falha ao incluir.");

@@ -24,9 +24,16 @@
 						actionListener="#{consultaProdutoController.pesquisar}">
 						<f:ajax execute="panelForm" render="@all" />
 					</h:commandButton>
-					<br/>
+					<br />
 
 				</h:panelGrid>
+				
+								<div class="btnNovo" align="right">
+					<h:commandButton value="Novo" class="btn btn-primary"
+						actionListener="#{consultaProdutoController.novo}">
+						<f:ajax execute="@this" render="@all" />
+					</h:commandButton>
+				</div>
 
 				<h:dataTable value="#{consultaProdutoController.listaProduto}"
 					var="obj">
@@ -51,13 +58,16 @@
 					</h:column>
 
 					<h:column>
-						<f:facet name="header">Desconto</f:facet>
-						<h:outputLabel value="#{obj.desconto}" />
+						<f:facet name="header">Valor</f:facet>
+						<h:outputLabel value="#{obj.valor}">
+							<f:convertNumber locale="pt_BR" currencySymbol="R$"
+								type="currency" />
+						</h:outputLabel>
 					</h:column>
 
 					<h:column>
-						<f:facet name="header">Valor</f:facet>
-						<h:outputLabel value="#{obj.valor}" />
+						<f:facet name="header">Desconto</f:facet>
+						<h:outputLabel value="#{obj.desconto}%" />
 					</h:column>
 
 					<h:column>
@@ -66,12 +76,19 @@
 							actionListener="#{consultaProdutoController.editar(obj)}">
 							<f:ajax render="@form" execute="@this" />
 						</h:commandButton>
-						<h:commandButton value="Remover"  class="btn btn-danger"
+						<h:commandButton value="Remover" class="btn btn-danger"
 							actionListener="#{consultaProdutoController.excluir(obj)}">
 							<f:ajax render="@form" execute="@this" />
 						</h:commandButton>
 					</h:column>
 				</h:dataTable>
+				
+								<div class="btnVoltar" align="left">
+					<h:commandButton value="Voltar" class="btn btn-info"
+						onclick="history.go(-1); return false;">
+						<f:ajax execute="@this" render="@all" />
+					</h:commandButton>
+				</div>
 			</h:form>
 		</div>
 	</ui:define>

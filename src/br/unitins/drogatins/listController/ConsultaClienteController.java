@@ -49,10 +49,6 @@ public class ConsultaClienteController implements Serializable {
 		listaCliente = null;
 	}
 
-	public void voltar() {
-		Util.redirect("menu.xhtml");
-	}
-
 	public void limpar() {
 		cliente = null;
 	}

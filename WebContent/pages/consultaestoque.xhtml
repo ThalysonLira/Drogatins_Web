@@ -23,9 +23,16 @@
 						actionListener="#{consultaEstoqueController.pesquisar}">
 						<f:ajax execute="panelForm" render="@all" />
 					</h:commandButton>
-					<br/>
+					<br />
 
 				</h:panelGrid>
+
+				<div class="btnNovo" align="right">
+					<h:commandButton value="Novo" class="btn btn-primary"
+						actionListener="#{consultaEstoqueController.novo}">
+						<f:ajax execute="@this" render="@all" />
+					</h:commandButton>
+				</div>
 
 				<h:dataTable value="#{consultaEstoqueController.estoque}" var="obj">
 					<h:column>
@@ -55,6 +62,13 @@
 						</h:commandButton>
 					</h:column>
 				</h:dataTable>
+
+				<div class="btnVoltar" align="left">
+					<h:commandButton value="Voltar" class="btn btn-info"
+						onclick="history.go(-1); return false;">
+						<f:ajax execute="@this" render="@all" />
+					</h:commandButton>
+				</div>
 			</h:form>
 		</div>
 	</ui:define>
