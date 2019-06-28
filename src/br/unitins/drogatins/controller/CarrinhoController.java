@@ -93,19 +93,19 @@ public class CarrinhoController implements Serializable {
 	public void finalizar() {
 		// busca o carrinho da sessao
 		List<ItemVenda> carrinho = (List<ItemVenda>) Session.getInstance().getAttribute("carrinho");
-		
-		if(carrinho !=  null && carrinho.size() > 0) {
-		getVenda().setCliente((Usuario) Session.getInstance().getAttribute("usuarioLogado"));
-		getVenda().setTotal(getValorTotal());
-		VendaDAO dao = new VendaDAO();
-		dao.create(getVenda());
-		
-		carrinho = null;
-		
+
+		if (carrinho != null && carrinho.size() > 0) {
+			getVenda().setCliente((Usuario) Session.getInstance().getAttribute("usuarioLogado"));
+			getVenda().setTotal(getValorTotal());
+			VendaDAO dao = new VendaDAO();
+			dao.create(getVenda());
+
+			carrinho = null;
+
 		} else {
 			Util.addMessageAlert("Ao menos um item deve ser adicionado no carrinho!");
 		}
-		
+
 	}
 
 	public Double getValorTotal() {
@@ -121,13 +121,20 @@ public class CarrinhoController implements Serializable {
 
 		if (carrinho.size() > 0) {
 			for (int i = 0; i < carrinho.size(); i++) {
-				double desconto = carrinho.get(i).getValor() *
-						carrinho.get(i).getItem().getProduto().getDesconto() / 100;
-				valorTotal += carrinho.get(i).getValor() - desconto ;
+				double desconto = carrinho.get(i).getValor() * carrinho.get(i).getItem().getProduto().getDesconto()
+						/ 100;
+				valorTotal += carrinho.get(i).getValor() - desconto;
 			}
 		}
 
 		return valorTotal;
+	}
+
+	public boolean verificarDisponibilidade(ItemEstoque item) {
+		if (item.getQuant() > 0)
+			return false;
+		else
+			return true;
 	}
 
 	public Venda getVenda() {

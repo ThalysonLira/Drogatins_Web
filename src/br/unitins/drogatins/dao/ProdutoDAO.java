@@ -60,8 +60,8 @@ public class ProdutoDAO extends DAO<Produto> {
 
 		PreparedStatement stat = null;
 		try {
-			stat = getConnection().prepareStatement("UPDATE produto SET " + "  nome = ?, " + "  marca = ? "
-					+ "  lote = ? " + "  desconto = ?, " + "  valor = ?, " + "WHERE id = ? ");
+			stat = getConnection().prepareStatement("UPDATE produto SET " + "  nome = ?, " + "  marca = ?, "
+					+ "  lote = ?, " + "  desconto = ?, " + "  valor = ? " + "WHERE id = ? ");
 			stat.setString(1, obj.getNome());
 			stat.setString(2, obj.getMarca());
 			stat.setString(3, obj.getLote());

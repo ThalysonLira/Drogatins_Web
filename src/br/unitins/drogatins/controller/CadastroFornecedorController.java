@@ -28,7 +28,6 @@ public class CadastroFornecedorController implements Serializable {
 	public CadastroFornecedorController() {
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 		fornecedor = (Fornecedor) flash.get("fornecedorFlash");
-//		fornecedor = (Fornecedor) Session.getInstance().getAttribute("fornecedorSession");
 	}
 
 	public void editar(int id) {
@@ -48,7 +47,7 @@ public class CadastroFornecedorController implements Serializable {
 			Util.redirect("cadastroendereco.xhtml");
 		} else {
 			if (dao.update(getFornecedor())) {
-				flash.put("enderecoFlash", getFornecedor().getEndereco());
+				flash.put("usuarioFlash", getFornecedor());
 				Util.redirect("cadastroendereco.xhtml");
 			}
 		}

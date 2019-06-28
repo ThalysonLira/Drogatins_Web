@@ -68,9 +68,9 @@ public class FuncionarioDAO extends DAO<Funcionario> {
 
 		PreparedStatement stat = null;
 		try {
-			stat = getConnection().prepareStatement("UPDATE funcionario SET " + "  nome = ?, " + "  cpf = ? "
-					+ "  datanascimento = ? " + "  login = ?, " + "  senha = ?, " + "  perfil = ?, "
-					+ "  sexo = ?, " + "  situacao = ?, " + "WHERE id = ? ");
+			stat = getConnection().prepareStatement("UPDATE funcionario SET " + "  nome = ?, " + "  cpf = ?, "
+					+ "  datanascimento = ?, " + "  login = ?, " + "  senha = ?, " + "  perfil = ?, "
+					+ "  sexo = ?, " + "  situacao = ? " + "WHERE id = ? ");
 			stat.setString(1, obj.getNome());
 			stat.setString(2, obj.getCpf());
 			stat.setDate(3, (obj.getDataNascimento() == null ?
@@ -95,8 +95,8 @@ public class FuncionarioDAO extends DAO<Funcionario> {
 				e.printStackTrace();
 			}
 		}
+		
 		return resultado;
-
 	}
 
 	@Override

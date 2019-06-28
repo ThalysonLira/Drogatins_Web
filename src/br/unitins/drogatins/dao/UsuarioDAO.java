@@ -3,6 +3,9 @@ package br.unitins.drogatins.dao;
 import java.util.List;
 
 import br.unitins.drogatins.application.Util;
+import br.unitins.drogatins.model.Fornecedor;
+import br.unitins.drogatins.model.Funcionario;
+import br.unitins.drogatins.model.Situacao;
 import br.unitins.drogatins.model.Usuario;
 
 public class UsuarioDAO extends DAO<Usuario> {
@@ -47,9 +50,21 @@ public class UsuarioDAO extends DAO<Usuario> {
 
 		if (usuario == null) {
 			usuario = funcionario.findFuncionario(login, senha);
+			
+			if(usuario != null) {
+			Funcionario f = (Funcionario) usuario;
+			if(f.getSituacao() == Situacao.INATIVO)
+				return null;
+			}
 		}
 		if (usuario == null) {
 			usuario = fornecedor.findFornecedor(login, senha);
+			
+			if(usuario != null) {
+			Fornecedor f = (Fornecedor) usuario;
+			if(f.getSituacao() == Situacao.INATIVO)
+				return null;
+			}
 		}
 
 		return usuario;

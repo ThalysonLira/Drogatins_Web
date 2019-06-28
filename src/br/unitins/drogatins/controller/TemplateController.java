@@ -42,6 +42,13 @@ public class TemplateController implements Serializable {
 		return qtdItensCarrinho;	
 		
 	}
+	
+	public boolean bloquearAcesso(int perfil) {	
+		if(usuarioLogado.getPerfil().getValue() > perfil)
+			return true;
+		else
+			return false;
+	}
 
 	public Usuario getUsuarioLogado() {
 		return usuarioLogado;

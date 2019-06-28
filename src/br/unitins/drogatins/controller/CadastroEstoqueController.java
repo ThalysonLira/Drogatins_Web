@@ -43,8 +43,6 @@ public class CadastroEstoqueController implements Serializable {
 				limpar();
 			}
 		} else {
-			item.setQuant(item.getQuant() + this.getItem().getQuant());
-			
 			if (dao.update(item)) {
 				limpar();
 			}

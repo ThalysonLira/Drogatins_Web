@@ -39,7 +39,7 @@
 
 					<h:column>
 						<f:facet name="header">Ação</f:facet>
-						<h:commandButton value="Remover"
+						<h:commandButton value="Remover" class="btn btn-danger"
 							actionListener="#{carrinhoController.remover(obj)}">
 							<f:ajax render="@all" execute="@this" />
 						</h:commandButton>
@@ -48,9 +48,13 @@
 				</h:dataTable>
 
 				<div align="left">
+				<h:outputLabel value="Total: "/>
 					<h:outputLabel id="total"
-						value="Total: R$ #{carrinhoController.valorTotal}"
-						styleClass="control-label" />
+						value="#{carrinhoController.valorTotal}"
+						styleClass="control-label">
+						<f:convertNumber locale="pt_BR" currencySymbol="R$"
+							type="currency" />
+					</h:outputLabel>
 				</div>
 				<div align="right">
 					<h:commandButton id="btnFinalizar" value="Finalizar Venda"

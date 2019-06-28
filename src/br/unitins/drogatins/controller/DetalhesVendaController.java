@@ -22,9 +22,9 @@ public class DetalhesVendaController  implements Serializable {
 	public DetalhesVendaController() {
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 		Venda vendaFlash = (Venda) flash.get("vendaFlash");
+		
 		if (vendaFlash != null)
 			venda = vendaFlash;
-		
 	}
 
 	public Venda getVenda() {

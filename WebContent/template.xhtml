@@ -26,10 +26,10 @@
 					<h:outputLabel id="nome_usuario" style="text-align: left;"
 						value="Olá, #{templateController.usuarioLogado.nome}" />
 					<div id="cont_carrinho">
-						<a href="/Drogatins_Web/faces/pages/carrinho.xhtml"> <img
-							id="cart"
+						<a href="/Drogatins_Web/faces/pages/carrinho.xhtml">
+							<img id="cart"
 							src="/Drogatins_Web/faces/resources/img/shopping-cart.png"
-							alt="Carrinho" /> <h:outputLabel id="cont_carrinho"
+							alt="Carrinho" /> <h:outputLabel id="cont_carrinho" 
 								value="#{templateController.qtdItensCarrinho}" />
 						</a>
 					</div>
@@ -42,27 +42,27 @@
 					action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/inicio.xhtml')}" />
 				<br />
 				<h:commandLink value="Cliente"
-					disable="#{templateController.usuarioLogado.perfil.value > 3}"
+					disabled="#{templateController.bloquearAcesso(3)}"
 					action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/consultacliente.xhtml')}" />
 				<br />
 				<h:commandLink value="Fornecedor"
-					disable="#{templateController.usuarioLogado.perfil.value > 3}"
+					disabled="#{templateController.bloquearAcesso(3)}"
 					action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/consultafornecedor.xhtml')}" />
 				<br />
 				<h:commandLink value="Funcionario"
-					disable="#{templateController.usuarioLogado.perfil.value > 2}"
+					disabled="#{templateController.bloquearAcesso(2)}"
 					action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/consultafuncionario.xhtml')}" />
 				<br />
 				<h:commandLink value="Produto"
-					disable="#{templateController.usuarioLogado.perfil.value > 4}"
+					disabled="#{templateController.bloquearAcesso(4)}"
 					action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/consultaproduto.xhtml')}" />
 				<br />
 				<h:commandLink value="Estoque"
-					disable="#{templateController.usuarioLogado.perfil.value > 4}"
+					disabled="#{templateController.bloquearAcesso(4)}"
 					action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/consultaestoque.xhtml')}" />
 				<br />
 				<h:commandLink value="Detalhe de Venda"
-					disable="#{templateController.usuarioLogado.perfil.value > 2}"
+					disabled="#{templateController.bloquearAcesso(2)}"
 					action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/detalhesvenda.xhtml')}" />
 				<br />
 				<h:commandLink value="Sair"

@@ -78,23 +78,23 @@
 						<div class="row">
 						<div class="style.cc">
 							<div class="col-md-3 mb-3">
-								<h:commandButton value="Salvar" class="btn btn-primary"
+								<h:commandButton value="Salvar"
 									actionListener="#{cadastroClienteController.salvar}"
-									styleClass="col-md-2 mb-3 btn btn-default form-control">
+									styleClass="col-md-2 mb-3 btn btn-primary form-control">
 									<f:ajax execute="@form" render="@form formDataTable" />
 								</h:commandButton>
 							</div>
 							<div class="col-md-3 mb-3">
-								<h:commandButton value="Cancelar" class="btn btn-danger"
+								<h:commandButton value="Cancelar"
 									actionListener="#{cadastroClienteController.limpar}"
-									styleClass="col-md-2 mb-3 btn btn-default form-control">
+									styleClass="col-md-2 mb-3 btn btn-danger form-control">
 									<f:ajax execute="@this" render="@all" />
 								</h:commandButton>
 							</div>
 							<div class="col-md-3 mb-3">
-								<h:commandButton value="Voltar" class="btn btn-info"
+								<h:commandButton value="Voltar"
 									onclick="history.go(-1); return false;"
-									styleClass="col-md-2 mb-3 btn btn-default form-control" />
+									styleClass="col-md-2 mb-3 btn btn-info form-control" />
 							</div>
 							</div>
 						</div>

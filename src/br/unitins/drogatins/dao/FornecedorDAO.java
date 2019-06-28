@@ -32,17 +32,16 @@ public class FornecedorDAO extends DAO<Fornecedor> {
 		PreparedStatement stat = null;
 		try {
 			stat = getConnection().prepareStatement(
-					"UPDATE fornecedor SET " + "  nome = ?, " + "  cnpj = ? " + "  endereco = ? " + "  login = ?, "
-							+ "  senha = ?, " + "  perfil = ?, " + "  situacao = ?, " + "WHERE id = ? ");
+					"UPDATE fornecedor SET " + "  nome = ?, " + "  cnpj = ?, " + "  login = ?, "
+							+ "  senha = ?, " + "  perfil = ?, " + "  situacao = ? " + "WHERE id = ? ");
 
 			stat.setString(1, obj.getNome());
 			stat.setString(2, obj.getCnpj());
 			stat.setString(3, obj.getLogin());
-			stat.setInt(4, obj.getEndereco().getId());
-			stat.setString(5, obj.getSenha());
-			stat.setInt(6, obj.getPerfil().getValue());
-			stat.setInt(7, obj.getSituacao().getValue());
-			stat.setInt(8, obj.getId());
+			stat.setString(4, obj.getSenha());
+			stat.setInt(5, obj.getPerfil().getValue());
+			stat.setInt(6, obj.getSituacao().getValue());
+			stat.setInt(7, obj.getId());
 
 			stat.execute();
 
@@ -58,8 +57,8 @@ public class FornecedorDAO extends DAO<Fornecedor> {
 				e.printStackTrace();
 			}
 		}
+		
 		return resultado;
-
 	}
 
 	@Override

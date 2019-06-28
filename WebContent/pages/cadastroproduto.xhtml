@@ -9,8 +9,8 @@
 	<ui:define name="conteudo">
 		<div class="container">
 			<div class="navbar navbar-inverse">
-				<div class="navbar-brand" style="width: 100%; text-align: center;">Carrinho
-					de Compras</div>
+				<div class="navbar-brand" style="width: 100%; text-align: center;">Cadastro
+					de Produto</div>
 			</div>
 			<div class="row">
 				<div class="col-xs-12 col-xs-updated">
@@ -51,23 +51,23 @@
 
 						<div class="row">
 							<div class="col-md-3 mb-3">
-								<h:commandButton value="Salvar" class="btn btn-primary"
+								<h:commandButton value="Salvar"
 									actionListener="#{cadastroProdutoController.salvar}"
-									styleClass="col-md-2 mb-3 btn btn-default form-control">
+									styleClass="col-md-2 mb-3 btn btn-primary form-control">
 									<f:ajax execute="@form" render="@form formDataTable" />
 								</h:commandButton>
 							</div>
 							<div class="col-md-3 mb-3">
-								<h:commandButton value="Cancelar" class="btn btn-danger"
+								<h:commandButton value="Cancelar"
 									actionListener="#{cadastroProdutoController.limpar}"
-									styleClass="col-md-2 mb-3 btn btn-default form-control">
+									styleClass="col-md-2 mb-3 btn btn-danger form-control">
 									<f:ajax execute="@this" render="@all" />
 								</h:commandButton>
 							</div>
 							<div class="col-md-3 mb-3">
-								<h:commandButton value="Voltar" class="btn btn-info"
+								<h:commandButton value="Voltar"
 									onclick="history.go(-1); return false;"
-									styleClass="col-md-2 mb-3 btn btn-default form-control" />
+									styleClass="col-md-2 mb-3 btn btn-info form-control" />
 							</div>
 						</div>
 					</h:form>

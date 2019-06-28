@@ -29,8 +29,6 @@ public class CadastroEnderecoController implements Serializable {
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 		usuario = (Usuario) flash.get("usuarioFlash");
 		endereco = (Endereco) flash.get("enderecoFlash");
-		
-//		endereco = (Endereco) Session.getInstance().getAttribute("enderecoSession");
 	}
 	
 	public void editar(int id) {
@@ -39,9 +37,6 @@ public class CadastroEnderecoController implements Serializable {
 	}
 	
 	public void salvar() {
-		// encriptando a senha do endereco
-		getUsuario().setSenha(Util.encrypt(getUsuario().getSenha()));
-		
 		EnderecoDAO dao = new EnderecoDAO();
 		if (getEndereco().getId() == null) {
 			getUsuario().setEndereco(getEndereco());
@@ -59,13 +54,7 @@ public class CadastroEnderecoController implements Serializable {
 			if (dao.update(getEndereco())) {
 				limpar();
 				
-				if(Cliente.class == usuario.getClass()) {
-					Util.redirect("consultacliente.xhtml");
-				}else if(Funcionario.class == usuario.getClass()) {
-					Util.redirect("consultafuncionario.xhtml");
-				}else if(Fornecedor.class == usuario.getClass()) {
-					Util.redirect("consultafornecedor.xhtml");
-				}
+				
 			}
 		}
 		

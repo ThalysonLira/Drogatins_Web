@@ -225,8 +225,8 @@ public class EnderecoDAO extends DAO<Endereco> {
 		PreparedStatement stat = null;
 		try {
 			stat = getConnection().prepareStatement(
-					"UPDATE endereco SET " + "  rua = ?, " + "  numero = ? " + "  cep = ? " + "  bairro = ?, "
-							+ "  cidade = ?, " + "  uf = ?, " + "  complemento = ?, " + "WHERE id = ? ");
+					"UPDATE endereco SET " + "  rua = ?, " + "  numero = ?, " + "  cep = ?, " + "  bairro = ?, "
+							+ "  cidade = ?, " + "  uf = ?, " + "  complemento = ? " + "WHERE id = ? ");
 
 			stat.setString(1, obj.getRua());
 			stat.setString(2, obj.getNumero());

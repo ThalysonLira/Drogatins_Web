@@ -68,8 +68,8 @@ public class ClienteDAO extends DAO<Cliente> {
 		PreparedStatement stat = null;
 		try {
 			stat = getConnection()
-					.prepareStatement("UPDATE cliente SET " + "  nome = ?, " + "  cpf = ? " + "  endereco = ? " + "  datanascimento = ? "
-							+ "  login = ?, " + "  senha = ?, " + "  perfil = ?, " + "  sexo = ?, " + "WHERE id = ? ");
+					.prepareStatement("UPDATE cliente SET " + "  nome = ?, " + "  cpf = ?, " + "  endereco = ?, " + "  datanascimento = ?, "
+							+ "  login = ?, " + "  senha = ?, " + "  perfil = ?, " + "  sexo = ? " + "WHERE id = ? ");
 			stat.setString(1, obj.getNome());
 			stat.setString(2, obj.getCpf());
 			stat.setInt(3, obj.getEndereco().getId());

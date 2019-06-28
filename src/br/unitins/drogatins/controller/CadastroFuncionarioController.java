@@ -38,13 +38,13 @@ public class CadastroFuncionarioController implements Serializable {
 
 	public void salvar() {
 		// encriptando a senha do fornecedor
-//		getFuncionario().setSenha(Util.encrypt(getFuncionario().getSenha()));
+		getFuncionario().setSenha(Util.encrypt(getFuncionario().getSenha()));
 
 		FuncionarioDAO dao = new FuncionarioDAO();
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 
 		if (getFuncionario().getId() == null) {
-			flash.put("usuarioFlash", funcionario);
+			flash.put("usuarioFlash", getFuncionario());
 			Util.redirect("cadastroendereco.xhtml");
 		} else {
 			if (dao.update(getFuncionario())) {
