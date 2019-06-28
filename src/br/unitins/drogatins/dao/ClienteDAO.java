@@ -264,8 +264,8 @@ public class ClienteDAO extends DAO<Cliente> {
 				e.printStackTrace();
 			}
 		}
+		
 		return listaCliente;
-
 	}
 
 	public List<Cliente> findByNome(String nome) {
@@ -313,6 +313,7 @@ public class ClienteDAO extends DAO<Cliente> {
 				e.printStackTrace();
 			}
 		}
+		
 		return listaCliente;
 	}
 }

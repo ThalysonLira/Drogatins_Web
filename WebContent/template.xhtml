@@ -30,7 +30,7 @@
 							<img id="cart"
 							src="/Drogatins_Web/faces/resources/img/shopping-cart.png"
 							alt="Carrinho" /> <h:outputLabel id="cont_carrinho" 
-								value="#{templateController.qtdItensCarrinho}" />
+								value="(#{templateController.qtdItensCarrinho})" />
 						</a>
 					</div>
 				</div>
@@ -63,7 +63,7 @@
 				<br />
 				<h:commandLink value="Detalhe de Venda"
 					disabled="#{templateController.bloquearAcesso(2)}"
-					action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/detalhesvenda.xhtml')}" />
+					action="#{templateController.redirecionar('/Drogatins_Web/faces/pages/consultavenda.xhtml')}" />
 				<br />
 				<h:commandLink value="Sair"
 					action="#{templateController.encerrarSessao}" />

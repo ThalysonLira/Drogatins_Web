@@ -10,7 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.unitins.drogatins.application.Util;
+import br.unitins.drogatins.model.Cliente;
 import br.unitins.drogatins.model.ItemVenda;
+import br.unitins.drogatins.model.Perfil;
+import br.unitins.drogatins.model.Sexo;
 import br.unitins.drogatins.model.Usuario;
 import br.unitins.drogatins.model.Venda;
 
@@ -28,9 +31,8 @@ public class VendaDAO extends DAO<Venda> {
 
 		PreparedStatement stat = null;
 		try {
-			stat = getConnection().prepareStatement(
-					"INSERT INTO venda ( " + "  data, " + "  cliente, " + "  total  ) " + "VALUES ( " + " ?, " + " ?, " + " ? ) ",
-					Statement.RETURN_GENERATED_KEYS);
+			stat = getConnection().prepareStatement("INSERT INTO venda ( " + "  data, " + "  cliente, " + "  total  ) "
+					+ "VALUES ( " + " ?, " + " ?, " + " ? ) ", Statement.RETURN_GENERATED_KEYS);
 			stat.setDate(1, Date.valueOf(LocalDate.now()));
 			stat.setInt(2, obj.getCliente().getId());
 			stat.setDouble(3, obj.getTotal());
@@ -54,7 +56,7 @@ public class VendaDAO extends DAO<Venda> {
 				stat.close();
 			}
 
-			Util.addMessageSucess("Compra  encerrada!");
+			Util.addMessageSucess("Compra realizada com sucesso!");
 			resultado = true;
 		} catch (SQLException e) {
 			Util.addMessageError("Falha ao incluir.");
@@ -143,7 +145,7 @@ public class VendaDAO extends DAO<Venda> {
 			while (rs.next()) {
 				ItemVenda item = new ItemVenda();
 				item.setId(rs.getInt("id"));
-				item.setItem(produto.findById(rs.getInt("produto")));
+				item.setItem(produto.findById(rs.getInt("item")));
 				item.setValor(rs.getDouble("valor"));
 				item.setVenda(venda.findById(rs.getInt("venda")));
 
@@ -207,7 +209,49 @@ public class VendaDAO extends DAO<Venda> {
 
 	@Override
 	public List<Venda> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		// verificando se tem uma conexao valida
+		if (getConnection() == null) {
+			Util.addMessageError("Falha ao conectar ao Banco de Dados.");
+			return null;
+		}
+
+		List<Venda> listaVenda = new ArrayList<Venda>();
+
+		PreparedStatement stat = null;
+		ClienteDAO cliente = new ClienteDAO();
+
+		try {
+			stat = getConnection().prepareStatement("SELECT * FROM Venda");
+			ResultSet rs = stat.executeQuery();
+			while (rs.next()) {
+				Venda venda = new Venda();
+				venda.setId(rs.getInt("id"));
+				venda.setCliente(cliente.findById(rs.getInt("cliente")));
+				venda.setData(rs.getDate("data") == null ?
+								null : (rs.getDate("data").toLocalDate()));
+				venda.setTotal(rs.getDouble("total"));
+				
+				// pegando a lista de itens vendidos
+				VendaDAO itemVenda  = new VendaDAO();
+				venda.setListaItemVenda(itemVenda.findByVenda(venda.getId()));
+
+				// fechando conexões e adicionando item a lista
+				cliente.closeConnection();
+				itemVenda.closeConnection();
+				listaVenda.add(venda);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			Util.addMessageError("Falha ao consultar o Banco de Dados.");
+			listaVenda = null;
+		} finally {
+			try {
+				stat.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return listaVenda;
 	}
 }

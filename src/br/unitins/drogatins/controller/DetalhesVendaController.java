@@ -2,12 +2,14 @@ package br.unitins.drogatins.controller;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
+import br.unitins.drogatins.dao.VendaDAO;
 import br.unitins.drogatins.model.ItemVenda;
 import br.unitins.drogatins.model.Venda;
 
@@ -21,17 +23,19 @@ public class DetalhesVendaController  implements Serializable {
 	
 	public DetalhesVendaController() {
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-		Venda vendaFlash = (Venda) flash.get("vendaFlash");
-		
-		if (vendaFlash != null)
-			venda = vendaFlash;
+		venda = (Venda) flash.get("vendaFlash");
 	}
-
+	
 	public Venda getVenda() {
 		if (venda == null) {
 			venda = new Venda();
 			venda.setListaItemVenda(new ArrayList<ItemVenda>());
 		}
+		
 		return venda;
+	}
+
+	public void setVenda(Venda venda) {
+		this.venda = venda;
 	}
 }

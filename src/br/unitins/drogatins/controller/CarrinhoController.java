@@ -101,6 +101,9 @@ public class CarrinhoController implements Serializable {
 			dao.create(getVenda());
 
 			carrinho = null;
+			
+			// atualiza o carrinho
+			Session.getInstance().setAttribute("carrinho", carrinho);
 
 		} else {
 			Util.addMessageAlert("Ao menos um item deve ser adicionado no carrinho!");

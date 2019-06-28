@@ -7,8 +7,8 @@
 <ui:composition template="../template.xhtml">
 	<ui:define name="conteudo">
 		<div class="container" align="center">
-			<h:messages style="color:red" />
 			<h:form>
+				<h:messages style="color:red" />
 				<h:panelGrid id="panelForm" columns="3">
 
 					<h:outputLabel value="Nome: " />
@@ -18,7 +18,7 @@
 						actionListener="#{consultaEstoqueController.pesquisar}">
 						<f:ajax execute="panelForm" render="@all" />
 					</h:commandButton>
-					<br/>
+					<br />
 
 				</h:panelGrid>
 
@@ -44,7 +44,8 @@
 
 					<h:column>
 						<f:facet name="header">Ação</f:facet>
-						<h:commandButton value="Adicionar ao carrinho" class="btn btn-primary"
+						<h:commandButton value="Adicionar ao carrinho"
+							class="btn btn-primary"
 							disabled="#{carrinhoController.verificarDisponibilidade(obj)}"
 							actionListener="#{carrinhoController.adicionar(obj.id)}">
 							<f:ajax render="@all" execute="@this" />

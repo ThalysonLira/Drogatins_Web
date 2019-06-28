@@ -12,11 +12,8 @@
 				<div class="navbar-brand" style="width: 100%; text-align: center;">Carrinho
 					de Compras</div>
 			</div>
-
-
 			<h:form>
 				<h:messages style="color:red" />
-
 				<h:dataTable value="#{carrinhoController.venda.listaItemVenda}"
 					var="obj">
 					<h:column>
@@ -60,12 +57,11 @@
 					<h:commandButton id="btnFinalizar" value="Finalizar Venda"
 						class="btn btn-primary"
 						actionListener="#{carrinhoController.finalizar}">
-						<f:ajax execute="@all" render="@form" />
+						<f:ajax execute="@form" render="@all" />
 					</h:commandButton>
 				</div>
 			</h:form>
 		</div>
 	</ui:define>
 </ui:composition>
-
 </html>

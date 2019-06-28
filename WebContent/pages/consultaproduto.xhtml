@@ -11,10 +11,8 @@
 				<div class="navbar-brand" style="width: 100%; text-align: center;">Consulta
 					de Produto</div>
 			</div>
-
-			<h:messages style="color:red" />
 			<h:form>
-
+				<h:messages style="color:red" />
 				<h:panelGrid id="panelForm" columns="3">
 
 					<h:outputLabel value="Nome: " />
@@ -27,8 +25,8 @@
 					<br />
 
 				</h:panelGrid>
-				
-								<div class="btnNovo" align="right">
+
+				<div class="btnNovo" align="right">
 					<h:commandButton value="Novo" class="btn btn-primary"
 						actionListener="#{consultaProdutoController.novo}">
 						<f:ajax execute="@this" render="@all" />
@@ -82,8 +80,8 @@
 						</h:commandButton>
 					</h:column>
 				</h:dataTable>
-				
-								<div class="btnVoltar" align="left">
+
+				<div class="btnVoltar" align="left">
 					<h:commandButton value="Voltar" class="btn btn-info"
 						onclick="history.go(-1); return false;">
 						<f:ajax execute="@this" render="@all" />

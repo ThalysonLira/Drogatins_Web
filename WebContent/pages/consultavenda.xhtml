@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<ui:composition template="../template.xhtml">
+	<ui:define name="conteudo">
+		<div class="container" align="center">
+			<div class="navbar navbar-inverse">
+				<div class="navbar-brand" style="width: 100%; text-align: center;">Consulta
+					de Venda</div>
+			</div>
+			<h:form>
+				<h:messages style="color:red" />
+				<h:dataTable value="#{consultaVendaController.listaVenda}" var="obj">
+					<h:column>
+						<f:facet name="header">Id</f:facet>
+						<h:outputLabel value="#{obj.id}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Cliente</f:facet>
+						<h:outputLabel value="#{obj.cliente.nome}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Data</f:facet>
+						<h:outputLabel value="#{obj.data}">
+							<f:convertDateTime type="localDate" pattern="dd-MM-yyyy" />
+						</h:outputLabel>
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Total</f:facet>
+						<h:outputLabel value="#{obj.total}">
+							<f:convertNumber locale="pt_BR" currencySymbol="R$"
+								type="currency" />
+						</h:outputLabel>
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Ação</f:facet>
+						<h:commandButton value="Visualizar" class="btn btn-primary"
+							actionListener="#{consultaVendaController.visualizarVenda(obj)}">
+							<f:ajax render="@form" execute="@this" />
+						</h:commandButton>
+					</h:column>
+				</h:dataTable>
+
+				<div class="btnVoltar" align="left">
+					<h:commandButton value="Voltar" class="btn btn-info"
+						onclick="history.go(-1); return false;">
+						<f:ajax execute="@this" render="@all" />
+					</h:commandButton>
+				</div>
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>
